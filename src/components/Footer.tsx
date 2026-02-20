@@ -4,7 +4,7 @@ import { Linkedin } from "lucide-react";
 const footerLinks = {
   Plateforme: [
     { label: "Trouver un espace", href: "/explorer" },
-    { label: "Proposer un espace", href: "/proposer" },
+    { label: "Commencer", href: "/commencer" },
     { label: "Tarifs", href: "#" },
     { label: "Blog", href: "/blog" },
   ],
