@@ -7,7 +7,7 @@ import Index from "./pages/Index";
 import Explorer from "./pages/Explorer";
 import Blog from "./pages/Blog";
 import BlogArticle from "./pages/BlogArticle";
-import ProposeSpace from "./pages/ProposeSpace";
+import GetStarted from "./pages/GetStarted";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,7 +23,7 @@ const App = () => (
           <Route path="/explorer" element={<Explorer />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogArticle />} />
-          <Route path="/proposer" element={<ProposeSpace />} />
+          <Route path="/commencer" element={<GetStarted />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

@@ -6,7 +6,6 @@ import { Menu, X } from "lucide-react";
 const navItems = [
   { label: "Comment ça marche", href: "/#how-it-works" },
   { label: "Trouver un espace", href: "/explorer" },
-  { label: "Proposer un espace", href: "/proposer" },
   { label: "Blog", href: "/blog" },
 ];
 
@@ -42,7 +41,7 @@ const Header = () => {
         </nav>
 
         <div className="hidden md:block">
-          <Link to="/proposer">
+          <Link to="/commencer">
             <Button className="rounded-2xl px-6 font-semibold">Commencer</Button>
           </Link>
         </div>
@@ -71,7 +70,7 @@ const Header = () => {
                 {item.label}
               </Link>
             ))}
-            <Link to="/proposer" onClick={() => setMobileOpen(false)}>
+            <Link to="/commencer" onClick={() => setMobileOpen(false)}>
               <Button className="mt-2 w-full rounded-2xl font-semibold">Commencer</Button>
             </Link>
           </nav>
