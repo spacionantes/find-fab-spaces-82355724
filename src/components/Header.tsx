@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const navItems = [
   { label: "Comment ça marche", href: "/#how-it-works" },
@@ -17,9 +18,7 @@ const Header = () => {
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-lg">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary">
-            <span className="text-lg font-extrabold text-primary-foreground">S</span>
-          </div>
+          <img src={logo} alt="Spacio logo" className="h-9 w-9 rounded-xl object-contain" />
           <span className="text-xl font-bold text-navy">Spacio</span>
         </Link>
 

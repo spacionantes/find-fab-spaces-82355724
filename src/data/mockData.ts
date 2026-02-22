@@ -184,10 +184,7 @@ export const mockArticles: BlogArticle[] = [
 export const howItWorksSteps = [
   { icon: "Search", title: "Recherchez", description: "Trouvez l'espace idéal par lieu, taille ou type", color: "pastel-blue" },
   { icon: "CalendarCheck", title: "Réservez", description: "Choisissez vos créneaux en quelques clics", color: "pastel-green" },
-  { icon: "CreditCard", title: "Payez en ligne", description: "Paiement sécurisé et confirmation instantanée", color: "pastel-orange" },
-  { icon: "MapPin", title: "Localisez", description: "Carte interactive pour repérer les lieux", color: "pastel-pink" },
   { icon: "Star", title: "Évaluez", description: "Partagez votre expérience avec la communauté", color: "pastel-purple" },
-  { icon: "Shield", title: "Assuré", description: "Chaque réservation est couverte par notre assurance", color: "pastel-yellow" },
   { icon: "Users", title: "Communauté", description: "Rejoignez un réseau d'associations engagées", color: "pastel-teal" },
   { icon: "MessageCircle", title: "Échangez", description: "Communiquez directement avec les propriétaires", color: "pastel-red" },
   { icon: "Zap", title: "Rapide", description: "Réponse garantie sous 24 heures", color: "pastel-indigo" },
