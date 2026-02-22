@@ -31,8 +31,12 @@ const stats = [
 const Index = () =>
 <Layout>
     {/* Hero */}
-    <section className="relative overflow-hidden bg-background py-20 lg:py-32">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,hsl(var(--indigo)/0.08),transparent)]" />
+    <section className="relative overflow-hidden bg-[hsl(230,50%,6%)] py-20 lg:py-32">
+      <div className="absolute inset-0">
+        <div className="absolute -left-32 top-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle,hsl(25,90%,50%,0.6),hsl(0,80%,50%,0.3),transparent_70%)] blur-3xl" />
+        <div className="absolute -right-32 top-1/3 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle,hsl(220,70%,50%,0.5),hsl(270,60%,40%,0.3),transparent_70%)] blur-3xl" />
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,hsl(330,60%,50%,0.3),transparent_70%)] blur-3xl" />
+      </div>
       <div className="container relative">
         <motion.div
         initial={{ opacity: 0, y: 24 }}
@@ -40,20 +44,19 @@ const Index = () =>
         transition={{ duration: 0.6 }}
         className="mx-auto max-w-3xl text-center">
 
-          <h1 className="mb-6 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl">Trouvez l'espace parfait selon votre besoin
-          <span className="text-gradient-primary italic font-serif">parfait</span> pour votre association
+          <h1 className="mb-6 text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">Trouvez l'espace <span className="text-gradient-primary italic font-serif">parfait</span> pour votre association
           </h1>
-          <p className="mx-auto mb-10 max-w-xl text-lg text-muted-foreground">
+          <p className="mx-auto mb-10 max-w-xl text-lg text-white/70">
             Spacio connecte les associations avec des espaces adaptés à leurs activités. Réservation simple, paiement sécurisé.
           </p>
 
           {/* Search bar */}
-          <div className="mx-auto flex max-w-xl items-center gap-2 rounded-2xl border border-border bg-card p-2 shadow-sm">
+          <div className="mx-auto flex max-w-xl items-center gap-2 rounded-2xl border border-white/10 bg-white/10 backdrop-blur-md p-2 shadow-sm">
             <div className="flex flex-1 items-center gap-2 pl-3">
-              <Search className="h-5 w-5 shrink-0 text-muted-foreground" />
+              <Search className="h-5 w-5 shrink-0 text-white/60" />
               <Input
               placeholder="Ville, type d'espace..."
-              className="border-0 bg-transparent shadow-none focus-visible:ring-0" />
+              className="border-0 bg-transparent shadow-none focus-visible:ring-0 text-white placeholder:text-white/50" />
 
             </div>
             <Link to="/explorer">
@@ -65,8 +68,8 @@ const Index = () =>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-6">
             {stats.map((stat) =>
           <div key={stat.label} className="flex items-center gap-2">
-                <span className="text-2xl font-extrabold text-primary">{stat.value}</span>
-                <span className="text-sm text-muted-foreground">{stat.label}</span>
+                <span className="text-2xl font-extrabold text-primary-foreground">{stat.value}</span>
+                <span className="text-sm text-white/60">{stat.label}</span>
               </div>
           )}
           </div>
