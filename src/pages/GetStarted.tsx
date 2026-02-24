@@ -184,6 +184,18 @@ const GetStarted = () => {
       return;
     }
 
+    // Send confirmation email
+    supabase.functions.invoke("send-email", {
+      body: {
+        type: "space_confirmation",
+        to: finalData.email,
+        data: {
+          organization_name: finalData.organization_name,
+          space_title: finalData.space_title || null,
+        },
+      },
+    }).catch((err) => console.error("Email send error:", err));
+
     if (leadData) {
       setSubmitted(true);
     } else {

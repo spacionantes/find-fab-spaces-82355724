@@ -103,6 +103,15 @@ const Diagnostic = () => {
     } else {
       setSaved(true);
       toast({ title: "Enregistré !", description: "Votre diagnostic a bien été sauvegardé." });
+
+      // Send results by email
+      supabase.functions.invoke("send-email", {
+        body: {
+          type: "diagnostic_results",
+          to: email.trim(),
+          data: { score, ratio, organization: organization.trim() },
+        },
+      }).catch((err) => console.error("Email send error:", err));
     }
   };
 
