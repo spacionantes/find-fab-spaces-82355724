@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Linkedin } from "lucide-react";
 
 const team = [
-  { name: "Fondateur 1", role: "Co-fondateur & CEO", linkedin: "#" },
+  { name: "Max Doyer", role: "Co-fondateur & CEO", linkedin: "#" },
   { name: "Fondateur 2", role: "Co-fondateur & CTO", linkedin: "#" },
   { name: "Membre 3", role: "Business Development", linkedin: "#" },
 ];
