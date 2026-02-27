@@ -1,34 +1,54 @@
 
 
-## Mise a jour de l'adresse d'expedition email
+## Creer la table `blog` sur Supabase et connecter le front-end
 
-### Contexte
+### 1. Migration : creer la table `blog`
 
-Les emails echouent avec une erreur 403 car l'adresse `onboarding@resend.dev` n'est utilisable qu'en mode test. Le domaine `spacionantes.fr` est maintenant verifie sur Resend.
-
-### Modification
-
-Un seul fichier a modifier : `supabase/functions/send-email/index.ts`
-
-Remplacer la ligne :
+Creer une table Supabase avec les colonnes suivantes :
 
 ```text
-from: "Spacio <onboarding@resend.dev>",
+blog
+  id            uuid        PK, default gen_random_uuid()
+  title         text        NOT NULL
+  slug          text        NOT NULL, UNIQUE
+  excerpt       text        NOT NULL
+  content       text        NOT NULL
+  category      text        NOT NULL
+  image_url     text
+  author        text        NOT NULL
+  read_time_min integer     NOT NULL, default 5
+  published_at  timestamptz NOT NULL, default now()
+  created_at    timestamptz NOT NULL, default now()
+  updated_at    timestamptz NOT NULL, default now()
 ```
 
-par :
+Politiques RLS :
+- SELECT : lecture publique (`true`) pour que tout le monde puisse lire les articles
+- INSERT / UPDATE / DELETE : reserves au service role (`false`) pour que seul l'admin puisse gerer le contenu
 
-```text
-from: "Spacio <contact@spacionantes.fr>",
-```
+Trigger `updated_at` pour mettre a jour automatiquement la colonne lors des modifications.
 
-### Verification
+### 2. Inserer les articles existants
 
-- La cle API Resend est deja configuree dans les secrets Supabase (`RESEND_API_KEY`) et correctement utilisee par la fonction
-- Aucun changement cote front-end n'est necessaire (les appels `supabase.functions.invoke("send-email", ...)` restent identiques)
-- La fonction sera redeployee automatiquement apres la modification
+Migrer les 6 articles mock actuels dans la nouvelle table via un INSERT SQL, en remplissant le champ `content` avec le texte fictif existant.
 
-### Impact
+### 3. Creer un hook `useArticles`
 
-Les deux types d'emails (confirmation d'espace et resultats Intensi'Score) utiliseront la nouvelle adresse `contact@spacionantes.fr`, ce qui resoudra l'erreur 403 de Resend.
+Nouveau fichier `src/hooks/useArticles.ts` utilisant `@tanstack/react-query` et le client Supabase pour :
+- `useArticles()` : recuperer tous les articles tries par `published_at` DESC
+- `useArticle(slug)` : recuperer un article par son slug
 
+### 4. Mettre a jour les pages Blog et BlogArticle
+
+- **`Blog.tsx`** : remplacer `mockArticles` par `useArticles()`, ajouter un etat de chargement (skeleton)
+- **`BlogArticle.tsx`** : remplacer `mockArticles.find()` par `useArticle(slug)`, afficher le vrai `content` au lieu du Lorem ipsum, ajouter un etat de chargement
+
+### 5. Nettoyer le code mock
+
+Supprimer l'interface `BlogArticle` et le tableau `mockArticles` de `src/data/mockData.ts`.
+
+### Details techniques
+
+- La table utilise un slug unique pour les URLs propres (`/blog/:slug`)
+- Le contenu est stocke en texte brut (colonne `content`). Si tu veux du contenu riche (Markdown, HTML) plus tard, cette colonne pourra etre interpretee cote front
+- Les politiques RLS bloquent toute ecriture cote client (anon), la gestion des articles se fera via le dashboard Supabase ou un futur back-office admin
