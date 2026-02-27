@@ -37,7 +37,7 @@ const Equipe = () => (
             )}
             <h3 className="font-semibold">{m.name}</h3>
             <p className="text-sm text-muted-foreground">{m.role}</p>
-            <a href={m.linkedin} className="mt-3 inline-flex h-9 w-9 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-accent hover:text-foreground">
+            <a href={m.linkedin} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex h-9 w-9 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-accent hover:text-foreground">
               <Linkedin className="h-4 w-4" />
             </a>
           </motion.div>
