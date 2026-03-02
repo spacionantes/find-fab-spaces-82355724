@@ -9,6 +9,8 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/useAuth";
+import AuthRequiredDialog from "@/components/AuthRequiredDialog";
 
 const DAYS = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"] as const;
 const SLOT_LABELS = ["Matin", "Midi", "Après-midi", "Soir"] as const;
@@ -37,6 +39,8 @@ const Diagnostic = () => {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const { toast } = useToast();
+  const { user } = useAuth();
+  const [authDialogOpen, setAuthDialogOpen] = useState(false);
 
   const setIntensity = (dayIndex: number, slotIndex: number, val: number) => {
     setSaved(false);
@@ -259,7 +263,7 @@ const Diagnostic = () => {
                     {score}
                   </motion.span>
                   <span className="text-xs text-muted-foreground">Occupation moyenne : {Math.round(ratio * 100)}%</span>
-                  <Button onClick={handleSave} disabled={saving || saved} className="mt-2 rounded-2xl px-6">
+                  <Button onClick={() => { if (!user) { setAuthDialogOpen(true); return; } handleSave(); }} disabled={saving || saved} className="mt-2 rounded-2xl px-6">
                     {saved ? <><CheckCircle className="h-4 w-4" /> Enregistré</> : saving ? "Enregistrement…" : <><Save className="h-4 w-4" /> Enregistrer mon diagnostic</>}
                   </Button>
                 </CardContent>
@@ -317,6 +321,7 @@ const Diagnostic = () => {
           </>
         )}
       </section>
+      <AuthRequiredDialog open={authDialogOpen} onOpenChange={setAuthDialogOpen} returnTo="/diagnostic" />
     </Layout>
   );
 };

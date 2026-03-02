@@ -182,6 +182,33 @@ export type Database = {
         }
         Relationships: []
       }
+      profiles: {
+        Row: {
+          city: string | null
+          created_at: string | null
+          full_name: string | null
+          id: string
+          organization: string | null
+          user_id: string
+        }
+        Insert: {
+          city?: string | null
+          created_at?: string | null
+          full_name?: string | null
+          id?: string
+          organization?: string | null
+          user_id: string
+        }
+        Update: {
+          city?: string | null
+          created_at?: string | null
+          full_name?: string | null
+          id?: string
+          organization?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
