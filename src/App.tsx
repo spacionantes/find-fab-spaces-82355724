@@ -18,6 +18,7 @@ import FAQ from "./pages/FAQ";
 import Reseau from "./pages/Reseau";
 import DevenirHote from "./pages/DevenirHote";
 import Missions from "./pages/Missions";
+import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -44,6 +45,7 @@ const App = () => (
           <Route path="/reseau" element={<Reseau />} />
           <Route path="/devenir-hote" element={<DevenirHote />} />
           <Route path="/missions" element={<Missions />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
