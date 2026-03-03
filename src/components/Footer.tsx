@@ -16,7 +16,7 @@ const footerLinks = {
   Ressources: [
     { label: "FAQ", href: "/faq" },
     { label: "Réseau", href: "/reseau" },
-    { label: "Contactez-nous", href: "/commencer" },
+    { label: "Contactez-nous", href: "/contact" },
   ],
   Légal: [
     { label: "CGU", href: "/legal#cgu" },
