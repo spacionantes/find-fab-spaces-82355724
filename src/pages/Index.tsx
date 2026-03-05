@@ -5,22 +5,22 @@ import Layout from "@/components/Layout";
 import { motion } from "framer-motion";
 
 const SplineScene = () => {
-  const [SplineComponent, setSplineComponent] = useState<ComponentType<{ scene: string }> | null>(null);
+  const [SplineComponent, setSplineComponent] = useState<ComponentType<{scene: string;}> | null>(null);
 
   useEffect(() => {
     let mounted = true;
 
-    import("@splinetool/react-spline")
-      .then((mod) => {
-        if (mounted) {
-          setSplineComponent(() => mod.default as ComponentType<{ scene: string }>);
-        }
-      })
-      .catch(() => {
-        if (mounted) {
-          setSplineComponent(null);
-        }
-      });
+    import("@splinetool/react-spline").
+    then((mod) => {
+      if (mounted) {
+        setSplineComponent(() => mod.default as ComponentType<{scene: string;}>);
+      }
+    }).
+    catch(() => {
+      if (mounted) {
+        setSplineComponent(null);
+      }
+    });
 
     return () => {
       mounted = false;
@@ -35,63 +35,63 @@ const SplineScene = () => {
 };
 
 const steps = [
-  {
-    icon: ClipboardCheck,
-    title: "État des lieux",
-    description: "Nous analysons vos besoins et votre situation pour identifier les espaces adaptés à votre activité.",
-    color: "bg-pastel-blue",
-    number: "01",
-  },
-  {
-    icon: Lightbulb,
-    title: "Conseil",
-    description: "Nos experts vous accompagnent avec des recommandations personnalisées pour optimiser votre recherche.",
-    color: "bg-pastel-orange",
-    number: "02",
-  },
-  {
-    icon: Handshake,
-    title: "Mise en relation",
-    description: "Nous vous connectons directement avec les propriétaires d'espaces qui correspondent à vos critères.",
-    color: "bg-pastel-green",
-    number: "03",
-  },
-];
+{
+  icon: ClipboardCheck,
+  title: "État des lieux",
+  description: "Nous analysons vos besoins et votre situation pour identifier les espaces adaptés à votre activité.",
+  color: "bg-pastel-blue",
+  number: "01"
+},
+{
+  icon: Lightbulb,
+  title: "Conseil",
+  description: "Nos experts vous accompagnent avec des recommandations personnalisées pour optimiser votre recherche.",
+  color: "bg-pastel-orange",
+  number: "02"
+},
+{
+  icon: Handshake,
+  title: "Mise en relation",
+  description: "Nous vous connectons directement avec les propriétaires d'espaces qui correspondent à vos critères.",
+  color: "bg-pastel-green",
+  number: "03"
+}];
+
 
 
 
 const spaceTypes = [
-  { label: "Tout voir", value: "" },
-  { label: "Salle de réunion", value: "Salle de réunion" },
-  { label: "Amphithéâtre", value: "Amphithéâtre" },
-  { label: "Cour d'école", value: "Cour d'école" },
-  { label: "Salle polyvalente", value: "Salle polyvalente" },
-  { label: "Terrain sportif", value: "Terrain sportif" },
-  { label: "Espace de coworking", value: "Coworking" },
-  { label: "Salle de spectacle", value: "Salle de spectacle" },
-  { label: "Gymnase", value: "Gymnase" },
-  { label: "Local associatif", value: "Local associatif" },
-  { label: "Salle de formation", value: "Salle de formation" },
-  { label: "Espace extérieur", value: "Espace extérieur" },
-];
+{ label: "Tout voir", value: "" },
+{ label: "Salle de réunion", value: "Salle de réunion" },
+{ label: "Amphithéâtre", value: "Amphithéâtre" },
+{ label: "Cour d'école", value: "Cour d'école" },
+{ label: "Salle polyvalente", value: "Salle polyvalente" },
+{ label: "Terrain sportif", value: "Terrain sportif" },
+{ label: "Espace de coworking", value: "Coworking" },
+{ label: "Salle de spectacle", value: "Salle de spectacle" },
+{ label: "Gymnase", value: "Gymnase" },
+{ label: "Local associatif", value: "Local associatif" },
+{ label: "Salle de formation", value: "Salle de formation" },
+{ label: "Espace extérieur", value: "Espace extérieur" }];
+
 
 const Index = () => {
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   return (
-<Layout>
+    <Layout>
     {/* Hero */}
-    <section className="relative z-10 bg-[rgb(10,10,40)] py-20 lg:py-32">
+    <section className="relative z-10 bg-[rgb(10,10,40)] py-20 border-0 mx-0 lg:py-0">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
           {/* Left column — Text + dropdown */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-left"
-          >
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-left py-0 px-0">
+              
             <h1 className="mb-6 text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
               Trouvez l'espace <span className="text-gradient-primary italic font-serif">parfait</span> pour votre association
             </h1>
@@ -102,35 +102,35 @@ const Index = () => {
             {/* Space type selector */}
             <div className="relative max-w-md">
               <button
-                onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="flex w-full items-center justify-between gap-3 rounded-2xl border border-white/15 bg-white/10 backdrop-blur-md px-6 py-4 text-left text-white shadow-lg transition-colors hover:bg-white/15"
-              >
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                  className="flex w-full items-center justify-between gap-3 rounded-2xl border border-white/15 bg-white/10 backdrop-blur-md px-6 py-4 text-left text-white shadow-lg transition-colors hover:bg-white/15">
+                  
                 <span className="text-base font-medium text-white/80">Quel type d'espace cherchez-vous ?</span>
                 <ChevronDown className={`h-5 w-5 text-white/60 transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
               </button>
 
-              {dropdownOpen && (
+              {dropdownOpen &&
                 <motion.div
                   initial={{ opacity: 0, y: -8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute left-0 right-0 top-full z-50 mt-2 overflow-hidden rounded-2xl border border-white/15 bg-[hsl(230,50%,8%)]/95 shadow-2xl"
-                >
-                  {spaceTypes.map((type) => (
-                    <button
-                      key={type.value}
-                      onClick={() => {
-                        setDropdownOpen(false);
-                        navigate(type.value ? `/explorer?type=${encodeURIComponent(type.value)}` : "/explorer");
-                      }}
-                      className="flex w-full items-center gap-3 px-6 py-3.5 text-sm font-medium text-white/80 transition-colors hover:bg-white/10 hover:text-white"
-                    >
+                  className="absolute left-0 right-0 top-full z-50 mt-2 overflow-hidden rounded-2xl border border-white/15 bg-[hsl(230,50%,8%)]/95 shadow-2xl">
+                  
+                  {spaceTypes.map((type) =>
+                  <button
+                    key={type.value}
+                    onClick={() => {
+                      setDropdownOpen(false);
+                      navigate(type.value ? `/explorer?type=${encodeURIComponent(type.value)}` : "/explorer");
+                    }}
+                    className="flex w-full items-center gap-3 px-6 py-3.5 text-sm font-medium text-white/80 transition-colors hover:bg-white/10 hover:text-white">
+                    
                       <Building2 className="h-4 w-4 text-primary/80" />
                       {type.label}
                     </button>
-                  ))}
+                  )}
                 </motion.div>
-              )}
+                }
             </div>
           </motion.div>
 
@@ -146,18 +146,18 @@ const Index = () => {
     <section id="how-it-works" className="bg-surface-alt py-20 lg:py-28">
       <div className="container">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-16 text-center"
-        >
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-16 text-center">
+            
           <h2 className="mb-3 text-3xl font-bold sm:text-4xl">Comment ça marche ?</h2>
           <p className="text-muted-foreground">Un accompagnement en 3 étapes clés</p>
         </motion.div>
 
         <div className="relative flex flex-col items-center gap-8 lg:flex-row lg:items-stretch lg:gap-0">
-          {steps.map((step, i) => (
+          {steps.map((step, i) =>
             <div key={step.title} className="relative flex flex-1 flex-col items-center lg:flex-row">
               {/* Card */}
               <motion.div
@@ -165,8 +165,8 @@ const Index = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: i * 0.12 }}
-                className="group relative w-full max-w-sm rounded-2xl border border-border bg-card p-8 shadow-sm transition-all hover:shadow-lg hover:-translate-y-1 lg:max-w-none"
-              >
+                className="group relative w-full max-w-sm rounded-2xl border border-border bg-card p-8 shadow-sm transition-all hover:shadow-lg hover:-translate-y-1 lg:max-w-none">
+                
                 {/* Step number */}
                 <span className="absolute -top-4 left-6 inline-flex h-8 items-center rounded-full bg-primary px-3 text-xs font-bold text-primary-foreground shadow-sm">
                   {step.number}
@@ -180,17 +180,17 @@ const Index = () => {
               </motion.div>
 
               {/* Arrow connector */}
-              {i < steps.length - 1 && (
-                <>
+              {i < steps.length - 1 &&
+              <>
                   {/* Desktop arrow */}
                   <div className="hidden lg:flex items-center justify-center px-4 shrink-0">
                     <motion.div
-                      initial={{ opacity: 0, x: -8 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: 0.2 + i * 0.12 }}
-                      className="flex items-center gap-1"
-                    >
+                    initial={{ opacity: 0, x: -8 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: 0.2 + i * 0.12 }}
+                    className="flex items-center gap-1">
+                    
                       <div className="h-px w-8 bg-gradient-to-r from-border to-primary/40" />
                       <ArrowRight className="h-5 w-5 text-primary/60" />
                     </motion.div>
@@ -198,20 +198,20 @@ const Index = () => {
                   {/* Mobile arrow */}
                   <div className="flex lg:hidden items-center justify-center py-2">
                     <motion.div
-                      initial={{ opacity: 0, y: -4 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: 0.2 + i * 0.12 }}
-                      className="flex flex-col items-center gap-1"
-                    >
+                    initial={{ opacity: 0, y: -4 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: 0.2 + i * 0.12 }}
+                    className="flex flex-col items-center gap-1">
+                    
                       <div className="w-px h-6 bg-gradient-to-b from-border to-primary/40" />
                       <ArrowRight className="h-5 w-5 text-primary/60 rotate-90" />
                     </motion.div>
                   </div>
                 </>
-              )}
+              }
             </div>
-          ))}
+            )}
         </div>
       </div>
     </section>
@@ -220,11 +220,11 @@ const Index = () => {
     <section className="py-20">
       <div className="container">
         <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="mb-12 text-center">
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-12 text-center">
 
           <h2 className="mb-3 text-3xl font-bold sm:text-4xl">Une solution pour tous</h2>
           <p className="text-muted-foreground">Que vous soyez propriétaire ou association</p>
@@ -233,11 +233,11 @@ const Index = () => {
         <div className="grid gap-6 lg:grid-cols-2">
           {/* Owners card */}
           <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="relative overflow-hidden rounded-3xl border border-border bg-card p-8 shadow-sm lg:p-10">
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="relative overflow-hidden rounded-3xl border border-border bg-card p-8 shadow-sm lg:p-10">
 
             <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-pastel-orange">
               <Building2 className="h-6 w-6 text-foreground" />
@@ -255,11 +255,11 @@ const Index = () => {
 
           {/* Associations card */}
           <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="relative overflow-hidden rounded-3xl border border-border bg-card p-8 shadow-sm lg:p-10">
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="relative overflow-hidden rounded-3xl border border-border bg-card p-8 shadow-sm lg:p-10">
 
             <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-pastel-purple">
               <Heart className="h-6 w-6 text-foreground" />
@@ -277,8 +277,8 @@ const Index = () => {
         </div>
       </div>
     </section>
-  </Layout>
-  );
+  </Layout>);
+
 };
 
 
