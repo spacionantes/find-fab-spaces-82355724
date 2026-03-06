@@ -84,13 +84,20 @@ const Index = () => {
     {/* Hero */}
     <section className="relative z-10 bg-[rgb(10,10,40)] py-20 border-0 mx-0 lg:py-0">
       <div className="container">
-        <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] items-center gap-0">
-          {/* Left column — Text + dropdown */}
+        <div className="relative">
+          {/* Spline 3D — full background */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[80%] h-[120%] lg:w-[70%] lg:h-[140%]">
+              <SplineScene />
+            </div>
+          </div>
+
+          {/* Text + dropdown — foreground */}
           <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-left py-0 px-0">
+              className="relative z-10 text-left py-16 lg:py-24 max-w-2xl">
               
             <h1 className="mb-6 text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
               Trouvez l'espace <span className="text-gradient-primary italic font-serif">parfait</span> pour votre association
@@ -133,11 +140,6 @@ const Index = () => {
                 }
             </div>
           </motion.div>
-
-          {/* Right column — Spline 3D */}
-          <div className="h-[350px] lg:h-[550px] pointer-events-none bg-[rgb(10,10,40)]">
-            <SplineScene />
-          </div>
         </div>
       </div>
     </section>
