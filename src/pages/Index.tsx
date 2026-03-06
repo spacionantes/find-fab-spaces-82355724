@@ -87,7 +87,7 @@ const Index = () => {
         <div className="relative">
           {/* Spline 3D — full background */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[80%] h-[120%] lg:w-[70%] lg:h-[140%]">
+            <div className="absolute -right-[5%] top-1/2 -translate-y-1/2 w-[65%] h-[100%] lg:w-[55%] lg:h-[120%]">
               <SplineScene />
             </div>
           </div>
