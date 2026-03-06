@@ -135,7 +135,7 @@ const Index = () => {
           </motion.div>
 
           {/* Right column — Spline 3D */}
-          <div className="h-[400px] lg:h-[650px] pointer-events-none bg-[rgb(10,10,40)]">
+          <div className="h-[350px] lg:h-[550px] pointer-events-none bg-[rgb(10,10,40)]">
             <SplineScene />
           </div>
         </div>
