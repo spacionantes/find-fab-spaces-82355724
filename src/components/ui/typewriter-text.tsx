@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 import { useEffect, useState } from "react";
 
 export interface TypewriterProps {
@@ -18,7 +18,7 @@ export function Typewriter({
   loop = false,
   deleteSpeed = 50,
   delay = 1500,
-  className,
+  className
 }: TypewriterProps) {
   const [displayText, setDisplayText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -50,26 +50,26 @@ export function Typewriter({
           }
         }
       },
-      isDeleting ? deleteSpeed : speed,
+      isDeleting ? deleteSpeed : speed
     );
 
     return () => clearTimeout(timeout);
   }, [
-    currentIndex,
-    isDeleting,
-    currentText,
-    loop,
-    speed,
-    deleteSpeed,
-    delay,
-    displayText,
-    text,
-  ]);
+  currentIndex,
+  isDeleting,
+  currentText,
+  loop,
+  speed,
+  deleteSpeed,
+  delay,
+  displayText,
+  text]
+  );
 
   return (
     <span className={className}>
       {displayText}
-      <span className="animate-pulse">{cursor}</span>
-    </span>
-  );
+      
+    </span>);
+
 }
