@@ -249,9 +249,9 @@ const Index = () => {
               Valorisez vos espaces inutilisés en les mettant à disposition d'acteurs de l’ESS. Gérez vos réservations, fixez vos prix et contribuez à la vie locale.
             </p>
             <ul className="mb-6 space-y-2 text-sm text-muted-foreground">
-              <li className="flex items-center gap-2">✓ Publication gratuite</li>
-              <li className="flex items-center gap-2">✓ Calendrier intégré</li>
-              <li className="flex items-center gap-2">✓ Paiement sécurisé</li>
+              <li className="flex items-center gap-2">✓ Rayonnement de l'établissement</li>
+              <li className="flex items-center gap-2">✓ Mutualisation des charges</li>
+              <li className="flex items-center gap-2">✓ Gestion complète prise en charge</li>
             </ul>
           </motion.div>
 
@@ -272,7 +272,7 @@ const Index = () => {
               </p>
             <ul className="mb-6 space-y-2 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">✓ Recherche par critères</li>
-              <li className="flex items-center gap-2">✓ Réservation instantanée</li>
+              <li className="flex items-center gap-2">✓ Réservation facilitées</li>
               <li className="flex items-center gap-2">✓ Tarifs associatifs</li>
             </ul>
           </motion.div>
