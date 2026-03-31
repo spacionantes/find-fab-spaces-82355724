@@ -16,7 +16,7 @@ const Equipe = () => (
     <section className="container py-12 md:py-20">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mx-auto max-w-3xl text-center">
         <h1 className="mb-4 text-3xl font-extrabold md:text-4xl">Notre équipe</h1>
-        <p className="mb-12 text-muted-foreground">Les personnes derrière Spacio, engagées pour rendre les espaces accessibles aux associations.</p>
+        <p className="mb-12 text-muted-foreground text-center">Derrière Spacio, une équipe de jeunes ingénieurs engagés œuvre pour rendre les espaces inoccupés accessibles aux associations. Liés par une amitié de longue date, nous portons des valeurs communes que nous souhaitons incarner à travers ce projet, afin de contribuer au renforcement du lien social dans nos villes.</p>
       </motion.div>
 
       <div className="mx-auto grid max-w-3xl gap-6 sm:grid-cols-3">
