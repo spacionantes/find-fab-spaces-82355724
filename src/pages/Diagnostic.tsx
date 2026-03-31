@@ -151,7 +151,7 @@ const Diagnostic = () => {
               <Card key={label}>
                 <CardContent className="p-5">
                   <SnappySlider
-                    label={`${label} (${SLOT_DURATIONS[slotIdx]}h)`}
+                    label={`${label} (${SLOT_RANGES[slotIdx]})`}
                     values={[0, 1, 2, 3, 4]}
                     defaultValue={0}
                     value={grid[activePeriod][slotIdx]}
