@@ -190,6 +190,7 @@ serve(async (req) => {
             <p style="margin:0;font-weight:600;">💡 Conseil Spacio</p>
             <p style="margin:8px 0 0;color:#555;">${advice}</p>
           </div>
+          <p style="margin:24px 0;color:#555;">Vous souhaitez optimiser l'usage de vos espaces ? Contactez-nous par mail à <a href="mailto:spacionantes@gmail.com" style="color:#1a1a2e;font-weight:600;">spacionantes@gmail.com</a>, nous serons ravis de vous accompagner.</p>
           <hr style="border:none;border-top:1px solid #eee;margin:24px 0;" />
           <p style="font-size:13px;color:#888;">Spacio — La marketplace d'espaces pour les associations</p>
         </div>
