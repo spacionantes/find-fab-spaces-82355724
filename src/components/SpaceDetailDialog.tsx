@@ -32,7 +32,7 @@ const SpaceDetailDialog = ({ space, open, onOpenChange }: { space: Space | null;
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-xl gap-0 overflow-hidden rounded-2xl p-0">
+      <DialogContent className="max-w-xl gap-0 overflow-hidden rounded-2xl p-0" showCloseButton>
         <div className="relative aspect-[16/9] w-full overflow-hidden">
           {hasMultiple ? (
             <Carousel
