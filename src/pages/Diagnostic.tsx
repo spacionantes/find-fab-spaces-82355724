@@ -8,8 +8,6 @@ import { SnappySlider } from "@/components/ui/snappy-slider";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { useAuth } from "@/hooks/useAuth";
-import AuthRequiredDialog from "@/components/AuthRequiredDialog";
 
 const PERIODS = ["Semaine", "Weekend"] as const;
 const SLOT_LABELS = ["Matin", "Midi", "Après-midi", "Soir"] as const;

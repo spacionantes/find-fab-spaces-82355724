@@ -35,9 +35,6 @@ const App = () => (
           <Route path="/blog/:slug" element={<BlogArticle />} />
           <Route path="/commencer" element={<GetStarted />} />
           <Route path="/diagnostic" element={<Diagnostic />} />
-          <Route path="/connexion" element={<Connexion />} />
-          <Route path="/inscription" element={<Inscription />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/legal" element={<Legal />} />
           <Route path="/equipe" element={<Equipe />} />
           <Route path="/faq" element={<FAQ />} />
