@@ -157,7 +157,7 @@ const BlogArticle = () => {
                   </p>
                 );
               }
-              return <p key={i} className="leading-[1.8] text-base font-sans text-foreground">{trimmed}</p>;
+              return <p key={i} className="leading-[1.8] text-base font-sans text-foreground">{renderTextWithLinks(trimmed, navigate)}</p>;
             })}
           </div>
         </div>
