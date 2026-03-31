@@ -1,12 +1,47 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Clock, User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import Layout from "@/components/Layout";
 import { useArticle } from "@/hooks/useArticles";
 import { Skeleton } from "@/components/ui/skeleton";
 
+const URL_REGEX = /(https?:\/\/spacionantes\.fr(\/[^\s,.)]*)?)/g;
+
+const renderTextWithLinks = (text: string, navigate: ReturnType<typeof useNavigate>) => {
+  const parts = text.split(URL_REGEX);
+  if (parts.length === 1) return text;
+  
+  const result: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  const regex = new RegExp(URL_REGEX);
+  
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      result.push(text.slice(lastIndex, match.index));
+    }
+    const url = match[0];
+    const path = match[2] || "/";
+    result.push(
+      <button
+        key={match.index}
+        onClick={() => navigate(path)}
+        className="text-primary underline hover:text-primary/80 transition-colors"
+      >
+        {url}
+      </button>
+    );
+    lastIndex = regex.lastIndex;
+  }
+  if (lastIndex < text.length) {
+    result.push(text.slice(lastIndex));
+  }
+  return result;
+};
+
 const BlogArticle = () => {
   const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
   const { data: article, isLoading } = useArticle(slug);
 
   if (isLoading) {
@@ -94,11 +129,11 @@ const BlogArticle = () => {
                         if (colonMatch) {
                           return (
                             <li key={j} className="leading-relaxed">
-                              <strong className="text-foreground">{colonMatch[1]}</strong> : {colonMatch[2]}
+                              <strong className="text-foreground">{colonMatch[1]}</strong> : {renderTextWithLinks(colonMatch[2], navigate)}
                             </li>
                           );
                         }
-                        return <li key={j} className="leading-relaxed">{line}</li>;
+                        return <li key={j} className="leading-relaxed">{renderTextWithLinks(line, navigate)}</li>;
                       })}
                     </ul>
                   );
@@ -107,7 +142,7 @@ const BlogArticle = () => {
                 return (
                   <div key={i} className="space-y-3">
                     {lines.map((line, j) => (
-                      <p key={j} className="leading-relaxed text-foreground">{line}</p>
+                      <p key={j} className="leading-relaxed text-foreground">{renderTextWithLinks(line, navigate)}</p>
                     ))}
                   </div>
                 );
@@ -118,11 +153,11 @@ const BlogArticle = () => {
               if (match && match[2]) {
                 return (
                   <p key={i} className="leading-[1.8] text-base font-sans text-foreground">
-                    <strong>{match[1]}</strong>{" "}{match[2]}
+                    <strong>{match[1]}</strong>{" "}{renderTextWithLinks(match[2], navigate)}
                   </p>
                 );
               }
-              return <p key={i} className="leading-[1.8] text-base font-sans text-foreground">{trimmed}</p>;
+              return <p key={i} className="leading-[1.8] text-base font-sans text-foreground">{renderTextWithLinks(trimmed, navigate)}</p>;
             })}
           </div>
         </div>
