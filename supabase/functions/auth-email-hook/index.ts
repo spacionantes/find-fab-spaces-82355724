@@ -50,13 +50,26 @@ Deno.serve(async (req) => {
 
   try {
     const payload = await req.json()
+    console.log('Raw payload:', JSON.stringify(payload))
 
-    // Supabase Auth Hook payload format
-    const emailType = payload.type || payload.email_data?.type
-    const recipient = payload.email || payload.email_data?.email
-    const confirmationUrl = payload.confirmation_url || payload.email_data?.confirmation_url || payload.email_data?.redirect_to
-    const token = payload.token || payload.email_data?.token
-    const newEmail = payload.new_email || payload.email_data?.new_email
+    // Supabase Auth Send Email Hook payload format:
+    // { user: { email: "..." }, email_data: { email_action_type: "signup", token: "...", token_hash: "...", redirect_to: "..." } }
+    const emailType = payload.email_data?.email_action_type || payload.email_data?.type || payload.type
+    const recipient = payload.user?.email || payload.email || payload.email_data?.email
+    const token = payload.email_data?.token || payload.token
+    const tokenHash = payload.email_data?.token_hash
+    const redirectTo = payload.email_data?.redirect_to || payload.email_data?.confirmation_url || payload.confirmation_url
+
+    // Build confirmation URL from token_hash + redirect_to if not provided directly
+    const siteUrl = `https://${ROOT_DOMAIN}`
+    let confirmationUrl = redirectTo
+    if (tokenHash && !confirmationUrl?.includes('token_hash')) {
+      const base = redirectTo || siteUrl
+      const separator = base.includes('?') ? '&' : '?'
+      confirmationUrl = `${siteUrl}/auth/confirm?token_hash=${tokenHash}&type=${emailType}${redirectTo ? `&next=${encodeURIComponent(redirectTo)}` : ''}`
+    }
+
+    const newEmail = payload.email_data?.new_email || payload.new_email
 
     if (!emailType || !recipient) {
       console.error('Missing email type or recipient', { payload: JSON.stringify(payload) })
