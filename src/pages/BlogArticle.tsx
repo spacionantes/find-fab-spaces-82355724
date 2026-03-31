@@ -122,7 +122,7 @@ const BlogArticle = () => {
                   </p>
                 );
               }
-              return <p key={i} className="leading-[1.8] text-muted-foreground">{trimmed}</p>;
+              return <p key={i} className="leading-[1.8] text-base font-sans font-bold text-sidebar-primary">{trimmed}</p>;
             })}
           </div>
         </div>
