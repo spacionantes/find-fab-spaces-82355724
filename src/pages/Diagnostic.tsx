@@ -13,7 +13,8 @@ import AuthRequiredDialog from "@/components/AuthRequiredDialog";
 
 const PERIODS = ["Semaine", "Weekend"] as const;
 const SLOT_LABELS = ["Matin", "Midi", "Après-midi", "Soir"] as const;
-const SLOT_DURATIONS = [4, 2, 4, 6]; // heures par créneau
+const SLOT_RANGES = ["8h – 12h", "12h – 14h", "14h – 18h", "18h – 00h"];
+const SLOT_DURATIONS = [4, 2, 4, 6];
 const INTENSITY_LABELS = ["Vide", "Peu occupé", "Modéré", "Bien occupé", "Plein"] as const;
 type Intensity = 0 | 1 | 2 | 3 | 4;
 
@@ -150,7 +151,7 @@ const Diagnostic = () => {
               <Card key={label}>
                 <CardContent className="p-5">
                   <SnappySlider
-                    label={`${label} (${SLOT_DURATIONS[slotIdx]}h)`}
+                    label={`${label} (${SLOT_RANGES[slotIdx]})`}
                     values={[0, 1, 2, 3, 4]}
                     defaultValue={0}
                     value={grid[activePeriod][slotIdx]}
