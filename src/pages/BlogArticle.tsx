@@ -66,7 +66,7 @@ const BlogArticle = () => {
             </div>
           )}
 
-          <div className="prose prose-lg max-w-none text-foreground space-y-6">
+          <div className="prose prose-lg max-w-none space-y-6 font-sans text-base text-foreground">
             {article.content.replace(/\r\n/g, "\n").split("\n\n").map((block, i) => {
               const trimmed = block.trim();
               if (!trimmed) return null;
@@ -74,7 +74,7 @@ const BlogArticle = () => {
               // Heading
               if (trimmed.startsWith("## ") || trimmed.endsWith(" ##")) {
                 return (
-                  <h2 key={i} className="mt-12 mb-2 text-2xl tracking-tight text-justify font-thin">
+                  <h2 key={i} className="mt-12 mb-2 text-2xl tracking-tight text-justify font-semibold text-foreground">
                     {trimmed.replace(/^##\s*/, "").replace(/\s*##$/, "")}
                   </h2>
                 );
@@ -88,7 +88,7 @@ const BlogArticle = () => {
                 const looksLikeList = lines.every((l) => l.length < 200);
                 if (looksLikeList) {
                   return (
-                    <ul key={i} className="space-y-2 pl-5 list-disc text-2xl text-sidebar-primary font-sans font-thin">
+                    <ul key={i} className="space-y-2 pl-5 list-disc text-base text-foreground font-sans">
                       {lines.map((line, j) => {
                         const colonMatch = line.match(/^([^:]+)\s*:\s*(.+)$/);
                         if (colonMatch) {
@@ -107,7 +107,7 @@ const BlogArticle = () => {
                 return (
                   <div key={i} className="space-y-3">
                     {lines.map((line, j) => (
-                      <p key={j} className="leading-relaxed text-muted-foreground">{line}</p>
+                      <p key={j} className="leading-relaxed text-foreground">{line}</p>
                     ))}
                   </div>
                 );
@@ -117,12 +117,12 @@ const BlogArticle = () => {
               const match = trimmed.match(/^([^.:\n]+[.:]?)\s*([\s\S]*)$/);
               if (match && match[2]) {
                 return (
-                  <p key={i} className="leading-[1.8] text-base font-sans font-bold text-sidebar-primary">
-                    <strong className="text-foreground">{match[1]}</strong>{" "}{match[2]}
+                  <p key={i} className="leading-[1.8] text-base font-sans text-foreground">
+                    <strong>{match[1]}</strong>{" "}{match[2]}
                   </p>
                 );
               }
-              return <p key={i} className="leading-[1.8] text-base font-sans font-bold text-sidebar-primary">{trimmed}</p>;
+              return <p key={i} className="leading-[1.8] text-base font-sans text-foreground">{trimmed}</p>;
             })}
           </div>
         </div>
