@@ -133,7 +133,7 @@ const BlogArticle = () => {
                             </li>
                           );
                         }
-                        return <li key={j} className="leading-relaxed">{line}</li>;
+                        return <li key={j} className="leading-relaxed">{renderTextWithLinks(line, navigate)}</li>;
                       })}
                     </ul>
                   );
