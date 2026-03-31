@@ -1,4 +1,4 @@
-import { MapPin, Star, Users } from "lucide-react";
+import { MapPin, Star, Users, User } from "lucide-react";
 import type { Space } from "@/data/mockData";
 import { Badge } from "@/components/ui/badge";
 
