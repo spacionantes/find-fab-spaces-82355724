@@ -153,7 +153,7 @@ const BlogArticle = () => {
               if (match && match[2]) {
                 return (
                   <p key={i} className="leading-[1.8] text-base font-sans text-foreground">
-                    <strong>{match[1]}</strong>{" "}{match[2]}
+                    <strong>{match[1]}</strong>{" "}{renderTextWithLinks(match[2], navigate)}
                   </p>
                 );
               }
