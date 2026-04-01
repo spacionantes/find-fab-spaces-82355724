@@ -66,16 +66,13 @@ const Diagnostic = () => {
 
   const isFormValid = email.trim() !== "" && organization.trim() !== "" && city.trim() !== "";
 
-  const handleReveal = () => {
+  const handleReveal = async () => {
     if (!isFormValid) {
       toast({ title: "Champs requis", description: "Veuillez remplir votre email, organisation et ville.", variant: "destructive" });
       return;
     }
     setShowResult(true);
-  };
-
-  const handleSave = async () => {
-    setSaving(true);
+    // Save lead + diagnostic in background
     const { error: leadError } = await supabase.from("leads").insert({
       email: email.trim(),
       organization_name: organization.trim(),
@@ -88,19 +85,8 @@ const Diagnostic = () => {
       grid: { periods: grid } as any,
       advice_category: adviceCategory,
     });
-    setSaving(false);
     if (leadError || diagError) {
-      toast({ title: "Erreur", description: "Impossible d'enregistrer le diagnostic.", variant: "destructive" });
-    } else {
-      setSaved(true);
-      toast({ title: "Envoyé !", description: "Votre diagnostic a bien été envoyé par email." });
-      supabase.functions.invoke("send-email", {
-        body: {
-          type: "diagnostic_results",
-          to: email.trim(),
-          data: { score, ratio, organization: organization.trim() },
-        },
-      }).catch((err) => console.error("Email send error:", err));
+      console.error("Save error:", leadError, diagError);
     }
   };
 
