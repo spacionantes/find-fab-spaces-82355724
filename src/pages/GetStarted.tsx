@@ -170,15 +170,26 @@ const SpaceBookingForm = ({ space, onSubmit }: { space: typeof mockSpaces[0]; on
           </div>
 
           <div className="space-y-1.5">
-            <Label>Créneau souhaité <span className="text-muted-foreground">(optionnel)</span></Label>
-            <Select value={selectedSlot} onValueChange={setSelectedSlot}>
-              <SelectTrigger><SelectValue placeholder="Sélectionner un créneau" /></SelectTrigger>
-              <SelectContent>
-                {timeSlots.map((s) => (
-                  <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <Label>Horaire souhaité <span className="text-muted-foreground">(optionnel)</span></Label>
+            <div className="flex items-center gap-2">
+              <Select value={startTime} onValueChange={setStartTime}>
+                <SelectTrigger className="flex-1"><SelectValue placeholder="Début" /></SelectTrigger>
+                <SelectContent>
+                  {timeOptions.map((t) => (
+                    <SelectItem key={t.value} value={t.value}>{t.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <span className="text-muted-foreground text-sm">→</span>
+              <Select value={endTime} onValueChange={setEndTime}>
+                <SelectTrigger className="flex-1"><SelectValue placeholder="Fin" /></SelectTrigger>
+                <SelectContent>
+                  {timeOptions.filter((t) => !startTime || t.value > startTime).map((t) => (
+                    <SelectItem key={t.value} value={t.value}>{t.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
           </div>
 
           <Button
