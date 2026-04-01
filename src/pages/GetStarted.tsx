@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, Building2, CheckCircle2, ArrowLeft, MapPin, Users, Ruler } from "lucide-react";
+import { Search, Building2, CheckCircle2, ArrowLeft, MapPin, Users, Ruler, CalendarIcon } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -9,10 +9,15 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import Layout from "@/components/Layout";
 import { motion, AnimatePresence } from "framer-motion";
 import { mockSpaces } from "@/data/mockData";
 import { useListings } from "@/hooks/useListings";
+import { format } from "date-fns";
+import { fr } from "date-fns/locale";
+import { cn } from "@/lib/utils";
 
 type UserType = "seeker" | "owner" | null;
 
@@ -57,6 +62,13 @@ const spaceTypes = [
   { value: "autre", label: "Autre" },
 ];
 
+const timeSlots = [
+  { value: "matin", label: "Matin (8h–12h)" },
+  { value: "midi", label: "Midi (12h–14h)" },
+  { value: "apres-midi", label: "Après-midi (14h–18h)" },
+  { value: "soir", label: "Soir (18h–00h)" },
+];
+
 const SpaceBookingForm = ({ space, onSubmit }: { space: typeof mockSpaces[0]; onSubmit: (data: LeadData) => void }) => {
   const [data, setData] = useState<LeadData>({
     ...initialData,
@@ -65,6 +77,8 @@ const SpaceBookingForm = ({ space, onSubmit }: { space: typeof mockSpaces[0]; on
     space_id: space.id,
     space_title: space.title,
   });
+  const [selectedDate, setSelectedDate] = useState<Date>();
+  const [selectedSlot, setSelectedSlot] = useState("");
 
   const update = (field: keyof LeadData, value: string) =>
     setData((prev) => ({ ...prev, [field]: value }));
@@ -123,6 +137,46 @@ const SpaceBookingForm = ({ space, onSubmit }: { space: typeof mockSpaces[0]; on
               onChange={(e) => update("phone", e.target.value)}
               placeholder="06 00 00 00 00"
             />
+          </div>
+
+          <div className="space-y-1.5">
+            <Label>Date souhaitée <span className="text-muted-foreground">(optionnel)</span></Label>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  className={cn(
+                    "w-full justify-start text-left font-normal rounded-md",
+                    !selectedDate && "text-muted-foreground"
+                  )}
+                >
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  {selectedDate ? format(selectedDate, "PPP", { locale: fr }) : "Choisir une date"}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0" align="start">
+                <Calendar
+                  mode="single"
+                  selected={selectedDate}
+                  onSelect={setSelectedDate}
+                  disabled={(date) => date < new Date()}
+                  initialFocus
+                  className="p-3 pointer-events-auto"
+                />
+              </PopoverContent>
+            </Popover>
+          </div>
+
+          <div className="space-y-1.5">
+            <Label>Créneau souhaité <span className="text-muted-foreground">(optionnel)</span></Label>
+            <Select value={selectedSlot} onValueChange={setSelectedSlot}>
+              <SelectTrigger><SelectValue placeholder="Sélectionner un créneau" /></SelectTrigger>
+              <SelectContent>
+                {timeSlots.map((s) => (
+                  <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
 
           <Button
