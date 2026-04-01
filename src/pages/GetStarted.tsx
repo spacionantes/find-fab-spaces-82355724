@@ -210,16 +210,16 @@ const SpaceBookingForm = ({ space, onSubmit }: { space: typeof mockSpaces[0]; on
                       mode="single"
                       selected={selectedDate}
                       onSelect={setSelectedDate}
-                      disabled={(date) => date < new Date()}
+                      disabled={isDateDisabled}
                       initialFocus
                       className="p-3 pointer-events-auto"
                     />
                   </PopoverContent>
                 </Popover>
-                <Select value={startTime} onValueChange={setStartTime}>
+                <Select value={startTime} onValueChange={(v) => { setStartTime(v); if (endTime && endTime <= v) setEndTime(""); }}>
                   <SelectTrigger className="rounded-xl bg-card"><SelectValue placeholder="Début" /></SelectTrigger>
                   <SelectContent>
-                    {timeOptions.map((t) => (
+                    {filteredTimeOptions.map((t) => (
                       <SelectItem key={t.value} value={t.value}>{t.label}</SelectItem>
                     ))}
                   </SelectContent>
@@ -227,7 +227,7 @@ const SpaceBookingForm = ({ space, onSubmit }: { space: typeof mockSpaces[0]; on
                 <Select value={endTime} onValueChange={setEndTime}>
                   <SelectTrigger className="rounded-xl bg-card"><SelectValue placeholder="Fin" /></SelectTrigger>
                   <SelectContent>
-                    {timeOptions.filter((t) => !startTime || t.value > startTime).map((t) => (
+                    {filteredTimeOptions.filter((t) => !startTime || t.value > startTime).map((t) => (
                       <SelectItem key={t.value} value={t.value}>{t.label}</SelectItem>
                     ))}
                   </SelectContent>
