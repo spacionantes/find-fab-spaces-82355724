@@ -273,10 +273,10 @@ const Index = () => {
             <h3 className="mb-3 text-2xl font-bold">Associations</h3>
             <p className="mb-6 leading-relaxed text-muted-foreground text-base text-justify">Trouvez des espaces abordables et adaptés pour vos réunions, activités… Réservez en quelques clics et concentrez-vous sur l'essentiel.
               </p>
-            <ul className="mb-6 space-y-2 text-sm text-muted-foreground flex flex-col items-center text-left">
-              <li className="flex items-center gap-2">✓ Recherche par critères</li>
-              <li className="flex items-center gap-2">✓ Réservation facilitées</li>
-              <li className="flex items-center gap-2">✓ Tarifs associatifs</li>
+            <ul className="mb-6 space-y-2 text-sm text-muted-foreground flex flex-col items-center text-center">
+              <li className="flex items-center gap-2 text-left">✓ Recherche par critères</li>
+              <li className="flex items-center gap-2 text-left">✓ Réservation facilitées</li>
+              <li className="flex items-center gap-2 text-left">✓ Tarifs associatifs</li>
             </ul>
           </motion.div>
         </div>
