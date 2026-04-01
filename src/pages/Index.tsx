@@ -4,6 +4,7 @@ import { Typewriter } from "@/components/ui/typewriter-text";
 import { useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { motion } from "framer-motion";
+import { useListings } from "@/hooks/useListings";
 
 const SplineScene = () => {
   const [SplineComponent, setSplineComponent] = useState<ComponentType<{scene: string;}> | null>(null);
