@@ -1,32 +1,49 @@
 
 
-## Gérer les marqueurs superposés sur la carte
+## Filtrer les créneaux et dates selon la disponibilité du listing
 
 ### Problème
-Quand plusieurs listings partagent les mêmes coordonnées, leurs marqueurs se chevauchent et seul le dernier est visible/cliquable.
+Le formulaire de réservation propose tous les horaires (8h-00h) et toutes les dates futures, sans tenir compte des colonnes `available_from`, `available_to`, `available_days`, `available_start_date`, `available_end_date` du listing.
 
-### Solution — Leaflet.markercluster
+### Plan
 
-Utiliser le plugin `leaflet.markercluster` qui regroupe automatiquement les marqueurs proches en clusters cliquables. Au clic sur un cluster, la carte zoome pour révéler les marqueurs individuels. Si les coordonnées sont strictement identiques, le plugin affiche un "spiderfy" (les marqueurs s'écartent en éventail).
+**1. Étendre le type `Space` avec les champs de disponibilité**
 
-### Étapes
+Dans `src/data/mockData.ts`, ajouter au type `Space` :
+- `available_from?: string` (format "HH:mm")
+- `available_to?: string`
+- `available_days?: string[]`
+- `available_start_date?: string`
+- `available_end_date?: string`
 
-1. **Installer le package** : `leaflet.markercluster` + ses types `@types/leaflet.markercluster`
+**2. Mapper ces colonnes dans `useListings.ts`**
 
-2. **Modifier `SpaceMap.tsx`** :
-   - Importer `leaflet.markercluster` et son CSS
-   - Créer un `L.markerClusterGroup` avec des options de style personnalisées (couleurs cohérentes avec le design)
-   - Ajouter tous les marqueurs au cluster group au lieu de les ajouter directement à la carte
-   - Nettoyer le cluster group lors du re-rendu
+Ajouter les 5 champs dans le `return data.map(...)` pour qu'ils soient disponibles côté front.
 
-3. **Style des clusters** : Les cercles de cluster afficheront le nombre de listings regroupés, avec un style arrondi blanc/bleu cohérent avec les prix-pills existants.
+**3. Adapter le formulaire `SpaceBookingForm` dans `GetStarted.tsx`**
+
+- **Horaires** : Filtrer `timeOptions` selon `space.available_from` / `available_to`. Si `null` → tout disponible (comportement actuel). Sinon, seuls les créneaux dans la plage sont sélectionnables (les autres sont exclus ou grisés).
+
+- **Jours** : Dans le `Calendar`, désactiver les jours de la semaine non listés dans `space.available_days`. Si `null` ou vide → tous les jours disponibles.
+
+- **Plage de dates** : Désactiver les dates avant `available_start_date` et après `available_end_date` dans le Calendar. Si `null` → pas de restriction (seulement le passé est grisé, comme actuellement).
 
 ### Détails techniques
 
 ```text
-Avant :  marker.addTo(map)
-Après :  clusterGroup.addLayer(marker)  →  map.addLayer(clusterGroup)
+Calendar disabled logic:
+  date < today
+  OR date < available_start_date
+  OR date > available_end_date
+  OR dayOfWeek NOT IN available_days
+
+Time selects:
+  filter timeOptions where value >= available_from AND value <= available_to
+  (null = no filter)
 ```
 
-Le spiderfy intégré gère nativement le cas des coordonnées strictement identiques — les marqueurs s'ouvrent en éventail au clic.
+Les fichiers modifiés :
+- `src/data/mockData.ts` — type Space
+- `src/hooks/useListings.ts` — mapping des colonnes
+- `src/pages/GetStarted.tsx` — logique de filtrage dans SpaceBookingForm
 
