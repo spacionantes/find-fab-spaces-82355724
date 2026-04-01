@@ -273,8 +273,8 @@ const Index = () => {
             <h3 className="mb-3 text-2xl font-bold">Associations</h3>
             <p className="mb-6 leading-relaxed text-muted-foreground text-base text-justify">Trouvez des espaces abordables et adaptés pour vos réunions, ateliers, événements… Réservez en quelques clics et concentrez-vous sur l'essentiel.
               </p>
-            <ul className="mb-6 space-y-2 text-sm text-muted-foreground text-center">
-              <li className="flex items-center gap-2 text-right">✓ Recherche par critères</li>
+            <ul className="mb-6 space-y-2 text-sm text-muted-foreground flex flex-col items-center">
+              <li className="flex items-center gap-2">✓ Recherche par critères</li>
               <li className="flex items-center gap-2">✓ Réservation facilitées</li>
               <li className="flex items-center gap-2">✓ Tarifs associatifs</li>
             </ul>
