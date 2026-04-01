@@ -46,15 +46,26 @@ const Header = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Link to="/diagnostic" className={navLinkClass(isActive("/diagnostic"))}>
-            Diagnostic
-          </Link>
           <Link to="/explorer" className={navLinkClass(isActive("/explorer"))}>
             Trouver un espace
           </Link>
-          <Link to="/devenir-hote" className={navLinkClass(isActive("/devenir-hote"))}>
-            Devenir hôte
-          </Link>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className={navLinkClass(isActive("/diagnostic") || isActive("/devenir-hote"))}>
+                Propriétaire d'espace <ChevronDown className="h-3.5 w-3.5" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="w-44">
+              <DropdownMenuItem asChild>
+                <Link to="/diagnostic" className="w-full">Diagnostic</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/devenir-hote" className="w-full">Devenir hôte</Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           <Link to="/blog" className={navLinkClass(isActive("/blog"))}>
             Blog
           </Link>
