@@ -271,7 +271,7 @@ const Index = () => {
               <Heart className="h-6 w-6 text-foreground" />
             </div>
             <h3 className="mb-3 text-2xl font-bold">Associations</h3>
-            <p className="mb-6 leading-relaxed text-muted-foreground text-base text-justify">Trouvez des espaces abordables et adaptés pour vos réunions, ateliers, événements… Réservez en quelques clics et concentrez-vous sur l'essentiel.
+            <p className="mb-6 leading-relaxed text-muted-foreground text-base text-justify">Trouvez des espaces abordables et adaptés pour vos réunions, activités… Réservez en quelques clics et concentrez-vous sur l'essentiel.
               </p>
             <ul className="mb-6 space-y-2 text-sm text-muted-foreground flex flex-col items-center text-left">
               <li className="flex items-center gap-2">✓ Recherche par critères</li>
