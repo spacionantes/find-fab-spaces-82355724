@@ -46,15 +46,26 @@ const Header = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Link to="/diagnostic" className={navLinkClass(isActive("/diagnostic"))}>
-            Diagnostic
-          </Link>
           <Link to="/explorer" className={navLinkClass(isActive("/explorer"))}>
             Trouver un espace
           </Link>
-          <Link to="/devenir-hote" className={navLinkClass(isActive("/devenir-hote"))}>
-            Devenir hôte
-          </Link>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className={navLinkClass(isActive("/diagnostic") || isActive("/devenir-hote"))}>
+                Propriétaire d'espace <ChevronDown className="h-3.5 w-3.5" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="w-44">
+              <DropdownMenuItem asChild>
+                <Link to="/diagnostic" className="w-full">Diagnostic</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/devenir-hote" className="w-full">Devenir hôte</Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           <Link to="/blog" className={navLinkClass(isActive("/blog"))}>
             Blog
           </Link>
@@ -80,15 +91,22 @@ const Header = () => {
 
             <div className="my-1 border-t border-border" />
 
-            <Link to="/diagnostic" className="rounded-xl px-4 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent" onClick={() => setMobileOpen(false)}>
-              Diagnostic
-            </Link>
             <Link to="/explorer" className="rounded-xl px-4 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent" onClick={() => setMobileOpen(false)}>
               Trouver un espace
             </Link>
-            <Link to="/devenir-hote" className="rounded-xl px-4 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent" onClick={() => setMobileOpen(false)}>
+
+            <div className="my-1 border-t border-border" />
+
+            <p className="px-4 pt-2 pb-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Propriétaire d'espace</p>
+            <Link to="/diagnostic" className="rounded-xl px-6 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent" onClick={() => setMobileOpen(false)}>
+              Diagnostic
+            </Link>
+            <Link to="/devenir-hote" className="rounded-xl px-6 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent" onClick={() => setMobileOpen(false)}>
               Devenir hôte
             </Link>
+
+            <div className="my-1 border-t border-border" />
+
             <Link to="/blog" className="rounded-xl px-4 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent" onClick={() => setMobileOpen(false)}>
               Blog
             </Link>
