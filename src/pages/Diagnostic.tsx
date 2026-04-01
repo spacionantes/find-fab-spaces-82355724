@@ -35,7 +35,7 @@ const Diagnostic = () => {
   const [organization, setOrganization] = useState("");
   const [city, setCity] = useState("");
   const [showResult, setShowResult] = useState(false);
-  const [saved, setSaved] = useState(false);
+  
   const { toast } = useToast();
   const [activePeriod, setActivePeriod] = useState(0);
 
