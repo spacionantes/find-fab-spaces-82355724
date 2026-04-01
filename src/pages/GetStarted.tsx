@@ -62,12 +62,13 @@ const spaceTypes = [
   { value: "autre", label: "Autre" },
 ];
 
-const timeSlots = [
-  { value: "matin", label: "Matin (8h–12h)" },
-  { value: "midi", label: "Midi (12h–14h)" },
-  { value: "apres-midi", label: "Après-midi (14h–18h)" },
-  { value: "soir", label: "Soir (18h–00h)" },
-];
+const timeOptions = Array.from({ length: 33 }, (_, i) => {
+  const totalMinutes = i * 30 + 480;
+  const h = Math.floor(totalMinutes / 60) % 24;
+  const m = totalMinutes % 60;
+  const label = `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}`;
+  return { value: label, label };
+});
 
 const SpaceBookingForm = ({ space, onSubmit }: { space: typeof mockSpaces[0]; onSubmit: (data: LeadData) => void }) => {
   const [data, setData] = useState<LeadData>({
@@ -78,7 +79,8 @@ const SpaceBookingForm = ({ space, onSubmit }: { space: typeof mockSpaces[0]; on
     space_title: space.title,
   });
   const [selectedDate, setSelectedDate] = useState<Date>();
-  const [selectedSlot, setSelectedSlot] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
 
   const update = (field: keyof LeadData, value: string) =>
     setData((prev) => ({ ...prev, [field]: value }));
@@ -168,15 +170,26 @@ const SpaceBookingForm = ({ space, onSubmit }: { space: typeof mockSpaces[0]; on
           </div>
 
           <div className="space-y-1.5">
-            <Label>Créneau souhaité <span className="text-muted-foreground">(optionnel)</span></Label>
-            <Select value={selectedSlot} onValueChange={setSelectedSlot}>
-              <SelectTrigger><SelectValue placeholder="Sélectionner un créneau" /></SelectTrigger>
-              <SelectContent>
-                {timeSlots.map((s) => (
-                  <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <Label>Horaire souhaité <span className="text-muted-foreground">(optionnel)</span></Label>
+            <div className="flex items-center gap-2">
+              <Select value={startTime} onValueChange={setStartTime}>
+                <SelectTrigger className="flex-1"><SelectValue placeholder="Début" /></SelectTrigger>
+                <SelectContent>
+                  {timeOptions.map((t) => (
+                    <SelectItem key={t.value} value={t.value}>{t.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <span className="text-muted-foreground text-sm">→</span>
+              <Select value={endTime} onValueChange={setEndTime}>
+                <SelectTrigger className="flex-1"><SelectValue placeholder="Fin" /></SelectTrigger>
+                <SelectContent>
+                  {timeOptions.filter((t) => !startTime || t.value > startTime).map((t) => (
+                    <SelectItem key={t.value} value={t.value}>{t.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
           </div>
 
           <Button
