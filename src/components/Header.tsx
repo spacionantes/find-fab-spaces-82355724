@@ -91,15 +91,22 @@ const Header = () => {
 
             <div className="my-1 border-t border-border" />
 
-            <Link to="/diagnostic" className="rounded-xl px-4 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent" onClick={() => setMobileOpen(false)}>
-              Diagnostic
-            </Link>
             <Link to="/explorer" className="rounded-xl px-4 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent" onClick={() => setMobileOpen(false)}>
               Trouver un espace
             </Link>
-            <Link to="/devenir-hote" className="rounded-xl px-4 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent" onClick={() => setMobileOpen(false)}>
+
+            <div className="my-1 border-t border-border" />
+
+            <p className="px-4 pt-2 pb-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Propriétaire d'espace</p>
+            <Link to="/diagnostic" className="rounded-xl px-6 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent" onClick={() => setMobileOpen(false)}>
+              Diagnostic
+            </Link>
+            <Link to="/devenir-hote" className="rounded-xl px-6 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent" onClick={() => setMobileOpen(false)}>
               Devenir hôte
             </Link>
+
+            <div className="my-1 border-t border-border" />
+
             <Link to="/blog" className="rounded-xl px-4 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent" onClick={() => setMobileOpen(false)}>
               Blog
             </Link>
