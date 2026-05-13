@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { motion } from "framer-motion";
 import { useListings } from "@/hooks/useListings";
+import FeaturedSpaces from "@/components/FeaturedSpaces";
 
 class SplineErrorBoundary extends Component<{ children: ReactNode; onError?: () => void }, { hasError: boolean }> {
   constructor(props: { children: ReactNode; onError?: () => void }) {
@@ -175,6 +176,9 @@ const Index = () => {
         </div>
       </div>
     </section>
+
+    {/* Featured spaces */}
+    <FeaturedSpaces />
 
     {/* How it works */}
     <section id="how-it-works" className="bg-surface-alt py-20 lg:py-28">
