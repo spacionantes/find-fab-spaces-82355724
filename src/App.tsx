@@ -19,6 +19,7 @@ import Contact from "./pages/Contact";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
+import Agenda from "./pages/Agenda";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 import MemberLayout from "./components/MemberLayout";
@@ -51,6 +52,7 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             <Route element={<MemberLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/agenda" element={<Agenda />} />
               <Route path="/profil" element={<Profile />} />
             </Route>
             <Route path="*" element={<NotFound />} />
