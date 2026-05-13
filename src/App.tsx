@@ -51,6 +51,7 @@ const App = () => (
             <Route path="/missions" element={<Missions />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
             <Route element={<MemberLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/agenda" element={<Agenda />} />
