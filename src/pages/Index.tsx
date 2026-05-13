@@ -177,6 +177,9 @@ const Index = () => {
       </div>
     </section>
 
+    {/* Featured spaces */}
+    <FeaturedSpaces />
+
     {/* How it works */}
     <section id="how-it-works" className="bg-surface-alt py-20 lg:py-28">
       <div className="container">
