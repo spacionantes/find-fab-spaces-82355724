@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/sidebar";
 import {
   LayoutDashboard,
+  CalendarDays,
   User,
   LogOut,
   Settings,
@@ -29,6 +30,7 @@ const MemberSidebar = () => {
 
   const items = [
     { title: "Mes demandes", url: "/dashboard", icon: LayoutDashboard },
+    { title: "Mon agenda", url: "/agenda", icon: CalendarDays },
     { title: "Mon profil", url: "/profil", icon: User },
   ];
 
