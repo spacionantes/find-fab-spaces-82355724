@@ -18,8 +18,10 @@ import Missions from "./pages/Missions";
 import Contact from "./pages/Contact";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
+import MemberLayout from "./components/MemberLayout";
 import { AuthProvider } from "./hooks/useAuth";
 
 const queryClient = new QueryClient();
@@ -47,7 +49,10 @@ const App = () => (
             <Route path="/missions" element={<Missions />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/auth" element={<Auth />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route element={<MemberLayout />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/profil" element={<Profile />} />
+            </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>
