@@ -204,15 +204,13 @@ const Index = () => {
             </div>
 
             {/* Social proof */}
-            <div className="flex items-center gap-4 border-t border-white/10 pt-5">
-              <div className="flex -space-x-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#0B0D19] bg-slate-700 text-xs font-bold text-white">ES</div>
-                <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#0B0D19] bg-[#5D69D6] text-xs font-bold text-white">AS</div>
-                <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#0B0D19] bg-orange-500 text-xs font-bold text-white">+</div>
+            <div className="flex items-center gap-3 border-t border-white/10 pt-5">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#5D69D6]/20 text-[#5D69D6]">
+                <Users className="h-5 w-5" />
               </div>
               <div className="text-sm leading-tight">
-                <p className="font-bold text-white">Un réseau d'acteurs ESS</p>
-                <p className="text-slate-400">déjà engagés via Spacio</p>
+                <p className="font-bold text-white">Un réseau d'associations</p>
+                <p className="text-slate-400">déjà engagées via Spacio</p>
               </div>
             </div>
           </motion.div>
