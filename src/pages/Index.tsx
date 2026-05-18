@@ -44,8 +44,7 @@ const SplineScene = () => {
 
     // Wait for the page to be fully idle before even thinking about Spline
     const idle = (cb: () => void) => {
-      // @ts-expect-error - requestIdleCallback may be missing
-      const ric = window.requestIdleCallback as ((cb: () => void, opts?: { timeout: number }) => number) | undefined;
+      const ric = (window as unknown as { requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number }).requestIdleCallback;
       if (ric) ric(cb, { timeout: 3000 });
       else setTimeout(cb, 1500);
     };
