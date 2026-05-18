@@ -141,12 +141,6 @@ const Index = () => {
 
       <div className="container relative">
         <div className="relative">
-          {/* Spline 3D — full background */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute -right-[5%] top-1/2 -translate-y-1/2 w-[65%] h-[100%] lg:w-[55%] lg:h-[120%]">
-              <SplineScene />
-            </div>
-          </div>
 
           {/* Text + dropdown — foreground */}
           <motion.div
