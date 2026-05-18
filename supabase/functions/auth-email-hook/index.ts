@@ -138,6 +138,16 @@ Deno.serve(async (req) => {
       confirmationUrl = `${siteUrl}/auth/confirm?token_hash=${tokenHash}&type=${emailType}${redirectTo ? `&next=${encodeURIComponent(redirectTo)}` : ''}`
     }
 
+    console.log('Confirmation URL built', {
+      emailType,
+      redirectToRaw,
+      redirectTo,
+      providerConfirmationUrlRaw,
+      providerConfirmationUrl,
+      tokenHash,
+      confirmationUrl,
+    })
+
     const newEmail = payload.email_data?.new_email || payload.new_email
 
     if (!emailType || !recipient) {
