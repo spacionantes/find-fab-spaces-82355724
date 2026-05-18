@@ -19,6 +19,7 @@ const staticEntries: SitemapEntry[] = [
   { path: "/explorer", changefreq: "daily", priority: "0.9" },
   { path: "/devenir-hote", changefreq: "monthly", priority: "0.8" },
   { path: "/louer-local-association-nantes", changefreq: "monthly", priority: "0.85" },
+  { path: "/location-salle-reunion-nantes", changefreq: "monthly", priority: "0.85" },
   { path: "/diagnostic", changefreq: "monthly", priority: "0.7" },
   { path: "/commencer", changefreq: "monthly", priority: "0.7" },
   { path: "/missions", changefreq: "yearly", priority: "0.6" },
