@@ -205,7 +205,7 @@ const Index = () => {
 
             {/* Social proof */}
             <div className="flex items-center gap-3 border-t border-white/10 pt-5">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#5D69D6]/20 text-[#5D69D6]">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber/20 text-amber ring-1 ring-amber/40 shadow-[0_0_20px_hsl(var(--amber)/0.4)]">
                 <Users className="h-5 w-5" />
               </div>
               <div className="text-sm leading-tight">
@@ -313,8 +313,12 @@ const Index = () => {
     </section>
 
     {/* Solution for all */}
-    <section className="py-20">
-      <div className="container">
+    <section className="relative overflow-hidden py-20">
+      {/* Ambient glows: indigo (hosts) left, amber (associations) right */}
+      <div className="pointer-events-none absolute top-1/3 -left-32 h-[500px] w-[500px] rounded-full bg-indigo/10 blur-[140px]" />
+      <div className="pointer-events-none absolute bottom-1/4 -right-32 h-[500px] w-[500px] rounded-full bg-amber/15 blur-[140px]" />
+
+      <div className="container relative">
         <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -323,54 +327,81 @@ const Index = () => {
             className="mb-12 text-center">
 
           <h2 className="mb-3 text-3xl font-bold sm:text-4xl">Une solution pour tous</h2>
-          <p className="text-muted-foreground">Que vous soyez propriétaire ou association</p>
+          <p className="text-muted-foreground">
+            <span className="font-semibold text-indigo">Propriétaires</span>
+            {" "}&{" "}
+            <span className="font-semibold text-amber-dark">Associations</span>
+          </p>
         </motion.div>
 
         <div className="grid gap-6 lg:grid-cols-2">
-          {/* Owners card */}
+          {/* Owners card — INDIGO */}
           <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="relative overflow-hidden rounded-3xl border border-border bg-card p-8 shadow-sm lg:p-10">
+              className="group relative">
 
-            <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-pastel-orange">
-              <Building2 className="h-6 w-6 text-foreground" />
+            <div className="pointer-events-none absolute -inset-1 rounded-[1.75rem] bg-gradient-to-br from-indigo/40 to-indigo-glow/40 opacity-30 blur-2xl transition-opacity duration-500 group-hover:opacity-60" />
+
+            <div className="relative h-full overflow-hidden rounded-3xl border border-indigo/20 bg-card p-8 shadow-sm transition-shadow group-hover:shadow-elegant lg:p-10">
+              {/* Corner glow */}
+              <div className="pointer-events-none absolute -top-20 -right-20 h-48 w-48 rounded-full bg-indigo/20 blur-3xl" />
+
+              <div className="relative mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo to-indigo-glow text-primary-foreground shadow-[0_8px_24px_-4px_hsl(var(--indigo)/0.5)]">
+                <Building2 className="h-6 w-6" />
+              </div>
+              <div className="mb-2 inline-flex items-center gap-1.5 rounded-full bg-indigo/10 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-indigo">
+                <span className="h-1 w-1 rounded-full bg-indigo" />
+                Hôtes
+              </div>
+              <h3 className="mb-3 text-2xl font-bold">Propriétaires</h3>
+              <p className="mb-6 leading-relaxed text-muted-foreground text-base text-justify">
+                Valorisez vos espaces inutilisés en les mettant à disposition d'acteurs de l'ESS. Gérez vos réservations, fixez vos prix et contribuez à la vie locale.
+              </p>
+              <ul className="mb-6 space-y-2 text-sm text-muted-foreground">
+                <li className="flex items-start gap-2"><span className="mt-0.5 text-indigo">✓</span> Renforcez concrètement vos engagements RSE</li>
+                <li className="flex items-start gap-2"><span className="mt-0.5 text-indigo">✓</span> Faites rayonner votre établissement</li>
+                <li className="flex items-start gap-2"><span className="mt-0.5 text-indigo">✓</span> Optimisez vos coûts en mutualisant vos charges</li>
+                <li className="flex items-start gap-2"><span className="mt-0.5 text-indigo">✓</span> Créez des synergies entre collaborateurs et bénéficiaires</li>
+                <li className="flex items-start gap-2"><span className="mt-0.5 text-indigo">✓</span> Donnez vie à vos espaces inoccupés</li>
+              </ul>
             </div>
-            <h3 className="mb-3 text-2xl font-bold">Propriétaires</h3>
-            <p className="mb-6 leading-relaxed text-muted-foreground text-base text-justify">
-              Valorisez vos espaces inutilisés en les mettant à disposition d'acteurs de l’ESS. Gérez vos réservations, fixez vos prix et contribuez à la vie locale.
-            </p>
-            <ul className="mb-6 space-y-2 text-sm text-muted-foreground">
-              <li className="flex items-center gap-2">✓ Renforcez concrètement vos engagements RSE</li>
-              <li className="flex items-center gap-2">✓ Faites rayonner votre établissement</li>
-              <li className="flex items-center gap-2">✓ Optimisez vos coûts en mutualisant vos charges</li>
-              <li className="flex items-center gap-2">✓ Créez des synergies entre collaborateurs et bénéficiaires</li>
-              <li className="flex items-center gap-2">✓ Donnez vie à vos espaces inoccupés</li>
-            </ul>
           </motion.div>
 
-          {/* Associations card */}
+          {/* Associations card — AMBER */}
           <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="relative overflow-hidden rounded-3xl border border-border bg-card p-8 shadow-sm lg:p-10">
+              className="group relative">
 
-            <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-pastel-purple">
-              <Heart className="h-6 w-6 text-foreground" />
-            </div>
-            <h3 className="mb-3 text-2xl font-bold">Associations</h3>
-            <p className="mb-6 leading-relaxed text-muted-foreground text-base text-justify">Trouvez des espaces abordables et adaptés pour vos réunions, activités… Réservez en quelques clics et concentrez-vous sur l'essentiel.
+            <div className="pointer-events-none absolute -inset-1 rounded-[1.75rem] bg-gradient-to-br from-amber/40 to-amber-light/40 opacity-30 blur-2xl transition-opacity duration-500 group-hover:opacity-60" />
+
+            <div className="relative h-full overflow-hidden rounded-3xl border border-amber/30 bg-card p-8 shadow-sm transition-shadow group-hover:shadow-warm lg:p-10">
+              {/* Corner glow */}
+              <div className="pointer-events-none absolute -top-20 -right-20 h-48 w-48 rounded-full bg-amber/25 blur-3xl" />
+
+              <div className="relative mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-amber to-amber-light text-white shadow-[0_8px_24px_-4px_hsl(var(--amber)/0.5)]">
+                <Heart className="h-6 w-6" />
+              </div>
+              <div className="mb-2 inline-flex items-center gap-1.5 rounded-full bg-amber/15 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-amber-dark">
+                <span className="h-1 w-1 rounded-full bg-amber" />
+                Associations
+              </div>
+              <h3 className="mb-3 text-2xl font-bold">Associations</h3>
+              <p className="mb-6 leading-relaxed text-muted-foreground text-base text-justify">
+                Trouvez des espaces abordables et adaptés pour vos réunions, activités… Réservez en quelques clics et concentrez-vous sur l'essentiel.
               </p>
-            <ul className="mb-6 space-y-2 text-sm text-muted-foreground">
-              <li className="flex items-center gap-2">✓ Trouvez rapidement un espace adapté à vos besoins</li>
-              <li className="flex items-center gap-2">✓ Réservez simplement, en quelques clics</li>
-              <li className="flex items-center gap-2">✓ Accédez à des tarifs solidaires et avantageux</li>
-              <li className="flex items-center gap-2">✓ Créez des synergies entre bénéficiaires et acteurs locaux</li>
-            </ul>
+              <ul className="mb-6 space-y-2 text-sm text-muted-foreground">
+                <li className="flex items-start gap-2"><span className="mt-0.5 text-amber-dark">✓</span> Trouvez rapidement un espace adapté à vos besoins</li>
+                <li className="flex items-start gap-2"><span className="mt-0.5 text-amber-dark">✓</span> Réservez simplement, en quelques clics</li>
+                <li className="flex items-start gap-2"><span className="mt-0.5 text-amber-dark">✓</span> Accédez à des tarifs solidaires et avantageux</li>
+                <li className="flex items-start gap-2"><span className="mt-0.5 text-amber-dark">✓</span> Créez des synergies entre bénéficiaires et acteurs locaux</li>
+              </ul>
+            </div>
           </motion.div>
         </div>
       </div>
