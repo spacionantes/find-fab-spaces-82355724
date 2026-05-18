@@ -151,7 +151,7 @@ const Index = () => {
                   className="text-gradient-primary italic font-serif"
                 />
                 <svg
-                  className="pointer-events-none absolute -bottom-2 left-0 h-3 w-full text-orange-400/50"
+                  className="pointer-events-none absolute -bottom-2 left-0 h-3 w-full text-amber-400 drop-shadow-[0_0_6px_rgba(251,191,36,0.6)]"
                   viewBox="0 0 100 10"
                   preserveAspectRatio="none"
                   aria-hidden="true">
