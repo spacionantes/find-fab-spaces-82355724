@@ -222,10 +222,10 @@ const Index = () => {
     <FeaturedSpaces />
 
     {/* How it works — animated scroll timeline */}
-    <section id="how-it-works" className="relative bg-surface-alt py-20 lg:py-28 overflow-hidden">
+    <section id="how-it-works" className="relative bg-[#0B0D19] py-20 lg:py-28 overflow-hidden">
       {/* Ambient glows */}
-      <div className="pointer-events-none absolute top-1/4 -left-20 h-[400px] w-[400px] rounded-full bg-[#5D69D6]/5 blur-[120px]" />
-      <div className="pointer-events-none absolute bottom-1/4 -right-20 h-[400px] w-[400px] rounded-full bg-amber-300/10 blur-[120px]" />
+      <div className="pointer-events-none absolute top-1/4 -left-20 h-[500px] w-[500px] rounded-full bg-indigo/20 blur-[140px]" />
+      <div className="pointer-events-none absolute bottom-1/4 -right-20 h-[500px] w-[500px] rounded-full bg-amber/15 blur-[140px]" />
 
       <div className="container relative">
         <motion.div
@@ -235,12 +235,12 @@ const Index = () => {
             transition={{ duration: 0.5 }}
             className="mb-20 text-center">
 
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#5D69D6]/20 bg-[#5D69D6]/5 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#5D69D6]">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#5D69D6]" />
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-indigo/30 bg-indigo/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-indigo-glow backdrop-blur-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-indigo-glow animate-pulse" />
             Processus
           </div>
-          <h2 className="mb-3 text-3xl font-bold sm:text-4xl lg:text-5xl">Comment ça marche ?</h2>
-          <p className="text-muted-foreground">Un accompagnement en 3 étapes clés</p>
+          <h2 className="mb-3 text-3xl font-bold text-white sm:text-4xl lg:text-5xl" style={{ color: 'white' }}>Comment ça marche ?</h2>
+          <p className="text-slate-400">Un accompagnement en 3 étapes clés</p>
         </motion.div>
 
         {/* Vertical timeline */}
@@ -278,7 +278,7 @@ const Index = () => {
                     className="absolute left-8 -translate-x-1/2 lg:left-1/2 z-10">
                     <div className="relative flex h-6 w-6 items-center justify-center">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#5D69D6] opacity-40" />
-                      <span className="relative inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#5D69D6] ring-4 ring-background">
+                      <span className="relative inline-flex h-6 w-6 items-center justify-center rounded-full bg-indigo ring-4 ring-[#0B0D19] shadow-[0_0_20px_hsl(var(--indigo)/0.8)]">
                         <span className="h-2 w-2 rounded-full bg-white" />
                       </span>
                     </div>
@@ -289,16 +289,16 @@ const Index = () => {
                     <motion.div
                       whileHover={{ y: -4 }}
                       transition={{ duration: 0.2 }}
-                      className="group relative rounded-2xl border border-border bg-card p-6 shadow-sm transition-shadow hover:shadow-xl lg:p-8">
+                      className="group relative rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm p-6 shadow-2xl transition-all hover:border-indigo/40 hover:bg-white/[0.06] hover:shadow-[0_20px_60px_-15px_hsl(var(--indigo)/0.4)] lg:p-8">
 
                       <div className={`mb-4 flex items-center gap-3 ${isLeft ? "lg:flex-row-reverse" : ""}`}>
-                        <div className={`inline-flex h-12 w-12 items-center justify-center rounded-xl ${step.color} shrink-0`}>
+                        <div className={`inline-flex h-12 w-12 items-center justify-center rounded-xl ${step.color} shrink-0 shadow-lg`}>
                           <step.icon className="h-6 w-6 text-foreground" />
                         </div>
-                        <span className="text-3xl font-black text-[#5D69D6]/20">{step.number}</span>
+                        <span className="text-3xl font-black text-white/15">{step.number}</span>
                       </div>
-                      <h3 className="mb-2 text-lg font-bold text-foreground lg:text-xl">{step.title}</h3>
-                      <p className="text-sm leading-relaxed text-muted-foreground text-justify">{step.description}</p>
+                      <h3 className="mb-2 text-lg font-bold text-white lg:text-xl">{step.title}</h3>
+                      <p className="text-sm leading-relaxed text-slate-400 text-justify">{step.description}</p>
                     </motion.div>
                   </div>
 
@@ -313,7 +313,7 @@ const Index = () => {
     </section>
 
     {/* Solution for all */}
-    <section className="relative overflow-hidden bg-[#0B0D19] py-20">
+    <section className="relative overflow-hidden bg-background py-20">
       {/* Ambient glows: indigo (hosts) left, amber (associations) right */}
       <div className="pointer-events-none absolute top-1/3 -left-32 h-[500px] w-[500px] rounded-full bg-indigo/10 blur-[140px]" />
       <div className="pointer-events-none absolute bottom-1/4 -right-32 h-[500px] w-[500px] rounded-full bg-amber/15 blur-[140px]" />
