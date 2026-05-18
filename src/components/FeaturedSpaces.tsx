@@ -17,8 +17,11 @@ const FeaturedSpaces = () => {
     .slice(0, 4);
 
   return (
-    <section className="bg-background py-20 lg:py-24">
-      <div className="container">
+    <section className="relative overflow-hidden bg-background py-20 lg:py-24">
+      {/* Ambient glows: indigo + amber */}
+      <div className="pointer-events-none absolute -top-32 -left-32 h-[500px] w-[500px] rounded-full bg-indigo/10 blur-[120px]" />
+      <div className="pointer-events-none absolute -bottom-32 -right-32 h-[500px] w-[500px] rounded-full bg-amber/10 blur-[120px]" />
+      <div className="container relative">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
