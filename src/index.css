@@ -114,19 +114,41 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: "cv11", "ss01", "ss03";
   }
 
   h1, h2, h3, h4, h5, h6 {
     color: hsl(var(--navy));
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.02em;
   }
 }
 
 @layer utilities {
   .text-gradient-primary {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--indigo)), hsl(270 60% 60%));
+    background-image: var(--gradient-primary);
+  }
+  .text-gradient-vibrant {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-vibrant);
+  }
+  .text-gradient-warm {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-warm);
+  }
+  .bg-gradient-vibrant {
+    background-image: var(--gradient-vibrant);
+  }
+  .shadow-elegant {
+    box-shadow: var(--shadow-elegant);
+  }
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  .shadow-warm {
+    box-shadow: var(--shadow-warm);
   }
 }
 
