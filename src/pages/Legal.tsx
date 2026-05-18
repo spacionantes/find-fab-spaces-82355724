@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { motion } from "framer-motion";
+import Seo from "@/components/Seo";
 
 const sections = [
   {

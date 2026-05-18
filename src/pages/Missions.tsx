@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout";
 import { motion } from "framer-motion";
 import { Eye, Heart, Target } from "lucide-react";
+import Seo from "@/components/Seo";
 
 const sections = [
   {

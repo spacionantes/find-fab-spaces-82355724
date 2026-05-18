@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import Layout from "@/components/Layout";
 import { motion, AnimatePresence } from "framer-motion";
+import Seo from "@/components/Seo";
 
 const userTypes = [
   { value: "seeker", label: "Demandeur d'espace", icon: Search },

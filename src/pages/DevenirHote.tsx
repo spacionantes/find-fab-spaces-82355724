@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent } from "@/components/ui/card";
 import Layout from "@/components/Layout";
 import { motion, AnimatePresence } from "framer-motion";
+import Seo from "@/components/Seo";
 
 const spaceTypes = [
   { value: "salle-reunion", label: "Salle de réunion" },

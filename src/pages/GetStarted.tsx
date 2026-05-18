@@ -18,6 +18,7 @@ import { useListings } from "@/hooks/useListings";
 import { format, startOfDay, parseISO, getDay } from "date-fns";
 import { fr } from "date-fns/locale";
 import { cn } from "@/lib/utils";
+import Seo from "@/components/Seo";
 
 type UserType = "seeker" | "owner" | null;
 

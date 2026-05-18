@@ -13,6 +13,7 @@ import SpaceMap from "@/components/SpaceMap";
 import SpaceDetailDialog from "@/components/SpaceDetailDialog";
 import { useListings } from "@/hooks/useListings";
 import type { Space } from "@/data/mockData";
+import Seo from "@/components/Seo";
 
 const Explorer = () => {
   const [searchParams] = useSearchParams();

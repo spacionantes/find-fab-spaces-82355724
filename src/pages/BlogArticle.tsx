@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import Layout from "@/components/Layout";
 import { useArticle } from "@/hooks/useArticles";
 import { Skeleton } from "@/components/ui/skeleton";
+import Seo from "@/components/Seo";
 
 const URL_REGEX = /(https?:\/\/spacionantes\.fr(\/[^\s,.)]*)?)/g;
 

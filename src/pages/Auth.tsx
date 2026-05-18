@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import { Loader2, MailCheck, ArrowLeft, KeyRound } from "lucide-react";
+import Seo from "@/components/Seo";
 
 type View = "auth" | "check-email" | "forgot";
 
