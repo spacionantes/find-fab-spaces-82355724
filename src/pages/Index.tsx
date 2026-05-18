@@ -258,7 +258,7 @@ const Index = () => {
         {/* Vertical timeline */}
         <div className="relative mx-auto max-w-4xl">
           {/* Animated vertical line */}
-          <div className="absolute left-8 top-0 bottom-0 w-px bg-border lg:left-1/2 lg:-translate-x-1/2" aria-hidden="true">
+          <div className="absolute left-8 top-0 bottom-0 w-px -translate-x-1/2 bg-border lg:left-1/2" aria-hidden="true">
             <motion.div
               initial={{ scaleY: 0 }}
               whileInView={{ scaleY: 1 }}
@@ -287,7 +287,7 @@ const Index = () => {
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true, margin: "-80px" }}
                     transition={{ duration: 0.4, delay: 0.3, type: "spring", stiffness: 200 }}
-                    className="absolute left-8 -translate-x-1/2 lg:left-1/2 z-10">
+                    className="absolute left-8 top-2 -translate-x-1/2 lg:left-1/2 z-10">
                     <div className="relative flex h-6 w-6 items-center justify-center">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#5D69D6] opacity-40" />
                       <span className="relative inline-flex h-6 w-6 items-center justify-center rounded-full bg-indigo ring-4 ring-[#0B0D19] shadow-[0_0_20px_hsl(var(--indigo)/0.8)]">
