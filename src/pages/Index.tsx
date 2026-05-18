@@ -69,22 +69,34 @@ const steps = [
     title: "Explorez les espaces",
     description: "Parcourez nos offres. Un espace vous plaît ? Envoyer une demande, nous vous recontacterons dans les 24h.",
     color: "bg-pastel-blue",
-    number: "01"
+    number: "01",
+    tint: "from-indigo/25 via-indigo/5 to-transparent",
+    border: "border-indigo/30 hover:border-indigo/60",
+    glow: "hover:shadow-[0_20px_60px_-15px_hsl(var(--indigo)/0.6)]",
+    numberColor: "text-indigo/50",
   },
   {
     icon: Lightbulb,
     title: "Faites vous conseiller",
     description: "Spacio prend le relais : nous vérifions la compatibilité d'usage, et nous nous occupons de tous les détails.",
     color: "bg-pastel-orange",
-    number: "02"
+    number: "02",
+    tint: "from-amber/30 via-amber/5 to-transparent",
+    border: "border-amber/30 hover:border-amber/60",
+    glow: "hover:shadow-[0_20px_60px_-15px_hsl(var(--amber)/0.6)]",
+    numberColor: "text-amber/60",
   },
   {
     icon: Handshake,
     title: "Rencontrez vous ! ",
     description: "Nous organisons la mise en relation avec le propriétaire de l'espace. Une fois la rencontre validée, tout est prêt pour accueillir vos activités !",
     color: "bg-pastel-green",
-    number: "03"
-  }
+    number: "03",
+    tint: "from-emerald-400/25 via-emerald-400/5 to-transparent",
+    border: "border-emerald-400/30 hover:border-emerald-400/60",
+    glow: "hover:shadow-[0_20px_60px_-15px_rgba(52,211,153,0.5)]",
+    numberColor: "text-emerald-400/50",
+  },
 ];
 
 
