@@ -1,4 +1,4 @@
-import { useEffect, useState, type ComponentType, Component, type ReactNode } from "react";
+import { useState } from "react";
 import { ClipboardCheck, Lightbulb, Handshake, ArrowRight, Building2, Heart, ChevronDown, Users } from "lucide-react";
 import { Typewriter } from "@/components/ui/typewriter-text";
 import { useNavigate } from "react-router-dom";
@@ -8,74 +8,6 @@ import { useListings } from "@/hooks/useListings";
 import FeaturedSpaces from "@/components/FeaturedSpaces";
 import { ParallaxRichContent } from "@/components/ui/text-parallax-content-scroll";
 import Seo from "@/components/Seo";
-
-class SplineErrorBoundary extends Component<{ children: ReactNode; onError?: () => void }, { hasError: boolean }> {
-  constructor(props: { children: ReactNode; onError?: () => void }) {
-    super(props);
-    this.state = { hasError: false };
-  }
-  static getDerivedStateFromError() {
-    return { hasError: true };
-  }
-  componentDidCatch() {
-    this.props.onError?.();
-  }
-  render() {
-    if (this.state.hasError) return null;
-    return this.props.children;
-  }
-}
-
-const SplineScene = () => {
-  const [SplineComponent, setSplineComponent] = useState<ComponentType<{ scene: string }> | null>(null);
-  const [failed, setFailed] = useState(false);
-  const [visible, setVisible] = useState(false);
-  const [shouldLoad, setShouldLoad] = useState(false);
-
-  useEffect(() => {
-    // Skip Spline entirely on mobile, low-end devices, reduced-motion, or data-saver
-    if (typeof window === "undefined") return;
-    const isMobile = window.matchMedia("(max-width: 1023px)").matches;
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    // @ts-expect-error - non-standard
-    const saveData = navigator.connection?.saveData;
-    // @ts-expect-error - non-standard
-    const lowMem = (navigator.deviceMemory ?? 8) < 4;
-    if (isMobile || reducedMotion || saveData || lowMem) return;
-
-    // Wait for the page to be fully idle before even thinking about Spline
-    const idle = (cb: () => void) => {
-      const ric = (window as unknown as { requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number }).requestIdleCallback;
-      if (ric) ric(cb, { timeout: 3000 });
-      else setTimeout(cb, 1500);
-    };
-    const t = setTimeout(() => idle(() => setShouldLoad(true)), 800);
-    return () => clearTimeout(t);
-  }, []);
-
-  useEffect(() => {
-    if (!shouldLoad) return;
-    let mounted = true;
-    import("@splinetool/react-spline")
-      .then((mod) => {
-        if (!mounted) return;
-        setSplineComponent(() => mod.default as ComponentType<{ scene: string }>);
-        setTimeout(() => mounted && setVisible(true), 100);
-      })
-      .catch(() => mounted && setFailed(true));
-    return () => { mounted = false; };
-  }, [shouldLoad]);
-
-  if (failed || !SplineComponent) return null;
-
-  return (
-    <SplineErrorBoundary onError={() => setFailed(true)}>
-      <div style={{ opacity: visible ? 1 : 0, transition: "opacity 0.5s ease" }} className="w-full h-full">
-        <SplineComponent scene="https://prod.spline.design/P521XWBOsGLegwiX/scene.splinecode" />
-      </div>
-    </SplineErrorBoundary>
-  );
-};
 
 const steps = [
   {
@@ -141,12 +73,6 @@ const Index = () => {
 
       <div className="container relative">
         <div className="relative">
-          {/* Spline 3D — full background */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute -right-[5%] top-1/2 -translate-y-1/2 w-[65%] h-[100%] lg:w-[55%] lg:h-[120%]">
-              <SplineScene />
-            </div>
-          </div>
 
           {/* Text + dropdown — foreground */}
           <motion.div
