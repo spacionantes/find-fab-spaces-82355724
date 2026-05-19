@@ -25,6 +25,15 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { user } = useAuth();
+  const aboutRef = useRef<HTMLButtonElement>(null);
+  const ownerRef = useRef<HTMLButtonElement>(null);
+  const explorerRef = useRef<HTMLButtonElement>(null);
+  const blogRef = useRef<HTMLButtonElement>(null);
+
+  const onEnter = (el: HTMLElement | null) => {
+    if (!el) return;
+    setCursor({ width: el.getBoundingClientRect().width, left: el.offsetLeft, opacity: 1 });
+  };
 
   const isActive = (path: string) => location.pathname === path;
 
