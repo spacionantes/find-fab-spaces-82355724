@@ -33,13 +33,18 @@ const Header = () => {
           <span className="text-xl font-bold text-navy">Spacio</span>
         </Link>
 
-        {/* Desktop nav — centered */}
-        <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 md:flex">
+        {/* Desktop nav — centered, animated pill cursor */}
+        <ul
+          onMouseLeave={() => setCursor((pv) => ({ ...pv, opacity: 0 }))}
+          className="absolute left-1/2 hidden -translate-x-1/2 rounded-full border-2 border-foreground bg-background p-1 md:flex"
+        >
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className={navLinkClass(isActive("/missions") || isActive("/equipe"))}>
-                À propos <ChevronDown className="h-3.5 w-3.5" />
-              </button>
+              <NavTab setPosition={setCursor}>
+                <span className="inline-flex items-center gap-1">
+                  À propos <ChevronDown className="h-3.5 w-3.5" />
+                </span>
+              </NavTab>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-44">
               <DropdownMenuItem asChild>
@@ -51,15 +56,17 @@ const Header = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Link to="/explorer" className={navLinkClass(isActive("/explorer"))}>
+          <NavTab setPosition={setCursor} onClick={() => navigate("/explorer")}>
             Trouver un espace
-          </Link>
+          </NavTab>
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className={navLinkClass(isActive("/diagnostic") || isActive("/devenir-hote"))}>
-                Propriétaire d'espace <ChevronDown className="h-3.5 w-3.5" />
-              </button>
+              <NavTab setPosition={setCursor}>
+                <span className="inline-flex items-center gap-1">
+                  Propriétaire d'espace <ChevronDown className="h-3.5 w-3.5" />
+                </span>
+              </NavTab>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-44">
               <DropdownMenuItem asChild>
@@ -71,10 +78,12 @@ const Header = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Link to="/blog" className={navLinkClass(isActive("/blog"))}>
+          <NavTab setPosition={setCursor} onClick={() => navigate("/blog")}>
             Blog
-          </Link>
-        </nav>
+          </NavTab>
+
+          <NavCursor position={cursor} />
+        </ul>
 
         {/* Account button */}
         <Link
