@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, ChevronDown, User as UserIcon } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
@@ -8,8 +8,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { NavTab, NavCursor } from "@/components/ui/nav-header";
+import { NavCursor } from "@/components/ui/nav-header";
 import logo from "@/assets/logo.png";
+
+const tabClass =
+  "relative z-10 inline-flex items-center gap-1 cursor-pointer px-3 py-1.5 text-xs uppercase text-white mix-blend-difference md:px-5 md:py-3 md:text-sm bg-transparent border-0 outline-none";
 
 const navLinkClass = (active: boolean) =>
   `inline-flex items-center gap-1 rounded-lg px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground ${
