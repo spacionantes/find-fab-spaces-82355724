@@ -48,7 +48,7 @@ const Header = () => {
         {/* Desktop nav — centered, animated pill cursor */}
         <div
           onMouseLeave={() => setCursor((pv) => ({ ...pv, opacity: 0 }))}
-          className="absolute left-1/2 hidden -translate-x-1/2 items-center rounded-full border-2 border-foreground bg-background p-1 md:flex"
+          className="absolute left-1/2 hidden -translate-x-1/2 items-center rounded-full border-2 border-foreground bg-background p-0.5 md:flex"
         >
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
