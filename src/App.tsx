@@ -47,27 +47,12 @@ const AuthActionBridge = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const authAction = params.get("auth_action");
-    const tokenHash = params.get("token_hash");
-    const type = params.get("type");
-    const next = params.get("next");
-
-    if (authAction === "confirm" && tokenHash && type && location.pathname !== "/auth/confirm") {
-      const nextParams = new URLSearchParams();
-      nextParams.set("token_hash", tokenHash);
-      nextParams.set("type", type);
-
-      if (next) {
-        nextParams.set("next", next);
-      }
-
-      navigate(`/auth/confirm?${nextParams.toString()}`, { replace: true });
-      return;
-    }
-
-    if (authAction === "email-confirmed" && location.pathname === "/") {
-      navigate("/auth?verified=1", { replace: true });
+    const result = resolveAuthRedirect({
+      pathname: location.pathname,
+      search: location.search,
+    });
+    if (result) {
+      navigate(result.to, { replace: result.replace });
     }
   }, [location.pathname, location.search, navigate]);
 
