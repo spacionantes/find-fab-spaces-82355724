@@ -80,7 +80,7 @@ const Explorer = () => {
         path="/explorer"
       />
       <section className="min-h-[calc(100vh-4rem)]">
-        <div className="border-b border-border bg-background px-4 py-4">
+        <div className="border-b border-border bg-muted px-4 py-4">
           <div className="container flex flex-wrap items-center gap-3">
             <div className="flex flex-1 items-center gap-2 rounded-2xl border border-border bg-card px-3 py-1.5 shadow-sm">
               <Search className="h-4 w-4 text-muted-foreground" />
