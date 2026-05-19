@@ -109,7 +109,7 @@ const Header = () => {
           </button>
 
           <NavCursor position={cursor} />
-        </ul>
+        </div>
 
         {/* Account button */}
         <Link
