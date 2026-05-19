@@ -62,6 +62,11 @@ const AuthActionBridge = () => {
       }
 
       navigate(`/auth/confirm?${nextParams.toString()}`, { replace: true });
+      return;
+    }
+
+    if (authAction === "email-confirmed" && location.pathname === "/") {
+      navigate("/auth?verified=1", { replace: true });
     }
   }, [location.pathname, location.search, navigate]);
 
