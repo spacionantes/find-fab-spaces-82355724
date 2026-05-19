@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import ScrollToTop from "./components/ScrollToTop";
 import { AuthProvider } from "./hooks/useAuth";
 import { supabase } from "./integrations/supabase/client";
+import { resolveAuthRedirect } from "./lib/auth-redirect";
 
 // Lazy-loaded routes — keep landing eager for fast LCP, defer the rest
 const Explorer = lazy(() => import("./pages/Explorer"));
